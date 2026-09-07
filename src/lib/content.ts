@@ -1,20 +1,42 @@
-export type Lang = "fr" | "en";
+export type Lang = "en" | "fr" | "de" | "es" | "pt" | "it";
+
+export const LANGS: { code: Lang; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "fr", label: "FR" },
+  { code: "de", label: "DE" },
+  { code: "es", label: "ES" },
+  { code: "pt", label: "PT" },
+  { code: "it", label: "IT" },
+];
+
+export function resolveLang(input: string | undefined): Lang {
+  const code = (input ?? "en").toLowerCase().slice(0, 2);
+  return (LANGS.find((l) => l.code === code)?.code ?? "en") as Lang;
+}
 
 export const PROFILES = [
-  { name: "GitHub", url: "https://github.com/lewisdongue" },
-  { name: "Caakus", url: "https://www.caakus.com/About" },
-  { name: "LinkedIn", url: "https://www.linkedin.com/in/bryan-lewis-dongue-ndiffo" },
-  { name: "Crunchbase", url: "https://www.crunchbase.com/person/bryan-lewis-dongue-ndiffo" },
-  { name: "IMDb", url: "https://www.imdb.com/name/nm17600001/" },
-  { name: "X / Twitter", url: "https://x.com/bryandongue" },
-  { name: "Instagram", url: "https://www.instagram.com/bryandongue" },
-  { name: "TikTok", url: "https://www.tiktok.com/@bryandongue" },
-  { name: "YouTube", url: "https://www.youtube.com/@bryandongue" },
+  { name: "GitHub", url: "https://github.com/lewisdongue/lewisdongue" },
+  { name: "GitHub Wiki", url: "https://github.com/lewisdongue/lewisdongue/wiki" },
+  {
+    name: "Caakus — Company Profile",
+    url: "https://github.com/lewisdongue/lewisdongue/wiki/Caakus%E2%80%90Company%E2%80%90Profile",
+  },
+  {
+    name: "Entity Resolution & Media",
+    url: "https://github.com/lewisdongue/lewisdongue/wiki/Entity%E2%80%90Resolution%E2%80%90and%E2%80%90Media%E2%80%90Footprint",
+  },
+  { name: "Crunchbase — Founder", url: "https://www.crunchbase.com/person/bryan-lewis-dongue-ndiffo-dacd" },
+  { name: "Crunchbase — Caakus", url: "https://www.crunchbase.com/organization/caakus" },
+  { name: "IMDb", url: "https://www.imdb.com/name/nm18253151/" },
+  { name: "X / Twitter", url: "https://x.com/BryanNdiffo" },
+  { name: "Instagram", url: "https://www.instagram.com/lewis_ndiffo" },
+  { name: "TikTok", url: "https://www.tiktok.com/@lewis_dongue" },
+  { name: "YouTube", url: "https://www.youtube.com/channel/UCAHR06E3J9V6i1B0jJyhEOQ" },
 ];
 
 type Section = { id: string; eyebrow: string; title: string; paragraphs: string[] };
 
-type Copy = {
+export type Copy = {
   nav: { label: string; id: string }[];
   hero: {
     name: string;
@@ -26,7 +48,7 @@ type Copy = {
     cta: string;
     ctaAlt: string;
   };
-  voice: { title: string; hint: string; playing: string; error: string };
+  voice: { title: string; hint: string; playing: string };
   facts: { label: string; value: string }[];
   sections: Section[];
   timelineTitle: string;
@@ -66,7 +88,6 @@ const fr: Copy = {
     title: "Capsule vocale",
     hint: "23 secondes · voix d'introduction",
     playing: "Lecture en cours…",
-    error: "Lecture audio indisponible pour le moment.",
   },
   facts: [
     { label: "Nom complet", value: "Bryan Lewis Dongue Ndiffo" },
@@ -199,7 +220,6 @@ const en: Copy = {
     title: "Voice capsule",
     hint: "23 seconds · spoken introduction",
     playing: "Now playing…",
-    error: "Audio playback is unavailable right now.",
   },
   facts: [
     { label: "Full name", value: "Bryan Lewis Dongue Ndiffo" },
@@ -307,7 +327,12 @@ const en: Copy = {
   },
 };
 
-export const COPY: Record<Lang, Copy> = { fr, en };
+import { de } from "./content.de";
+import { es } from "./content.es";
+import { pt } from "./content.pt";
+import { it } from "./content.it";
+
+export const COPY: Record<Lang, Copy> = { fr, en, de, es, pt, it };
 
 export const VOICE_SCRIPT: Record<Lang, string> = {
   fr: "Bonjour, je suis Bryan Lewis Dongue Ndiffo, fondateur et CEO de Caakus. Je suis architecte système, basé à Worms, en Allemagne, et je construis une infrastructure vocale en temps réel qui connecte les gens en une seconde. Bienvenue chez moi : explorez mon parcours, ma vision et l'écosystème Caakus.",
