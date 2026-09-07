@@ -383,13 +383,14 @@ function Home() {
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <button
-                onClick={() => play(false)}
-                className="group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+                onClick={() => void play(false)}
+                disabled={audioLoading}
+                className="group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-70"
               >
                 <span className="grid h-6 w-6 place-items-center rounded-full bg-primary-foreground/15">
-                  {playing ? "❚❚" : "▶"}
+                  {audioLoading ? "…" : playing ? "❚❚" : "▶"}
                 </span>
-                {playing ? t.voice.playing : t.hero.cta}
+                {audioLoading ? "…" : playing ? t.voice.playing : t.hero.cta}
               </button>
               <a
                 href="#biographie"
