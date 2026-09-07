@@ -21,13 +21,25 @@ const PHOTOS = [
   { src: official, alt: "Bryan Lewis Dongue Ndiffo, official portrait" },
 ];
 
+const KG_ID = "https://g.co/kg/g/11yzdg014n";
+const SITE_URL = "/";
+
 const personSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://g.co/kg/g/11yzdg014n",
+      "@id": KG_ID,
       name: "Bryan Lewis Dongue Ndiffo",
+      url: SITE_URL,
+      identifier: [
+        {
+          "@type": "PropertyValue",
+          propertyID: "Google Knowledge Graph ID",
+          value: "/g/11yzdg014n",
+          url: KG_ID,
+        },
+      ],
       alternateName: ["Bryan Lewis Dongue", "Bryan Ndiffo", "Lewis Dongue"],
       givenName: "Bryan Lewis",
       familyName: "Dongue Ndiffo",
