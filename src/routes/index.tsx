@@ -251,8 +251,10 @@ function recordAutoplay() {
 function Home() {
   const [lang, setLang] = useState<Lang>("en");
   const [playing, setPlaying] = useState(false);
+  const [audioLoading, setAudioLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const autoTried = useRef(false);
+  const currentSrc = useRef<string | null>(null);
 
   useEffect(() => {
     setLang(resolveLang(navigator.language));
@@ -264,20 +266,46 @@ function Home() {
 
   const t = COPY[lang];
 
-  const play = (auto = false) => {
+  const play = async (auto = false) => {
     if (auto && !canAutoplay()) return;
     const audio = audioRef.current;
-    if (!audio) return;
-    audio.src = `/api/public/intro-voice?lang=${lang}`;
-    audio
-      .play()
-      .then(() => {
-        setPlaying(true);
-        if (auto) recordAutoplay();
-      })
-      .catch(() => {
-        setPlaying(false);
-      });
+    if (!audio || audioLoading) return;
+
+    // Toggle: if already playing, pause instead of reloading
+    if (playing && !auto) {
+      audio.pause();
+      setPlaying(false);
+      return;
+    }
+
+    const src = `/api/public/intro-voice?lang=${lang}`;
+    if (currentSrc.current !== src) {
+      currentSrc.current = src;
+      audio.src = src;
+      audio.load();
+    }
+
+    setAudioLoading(true);
+    try {
+      await audio.play();
+      setPlaying(true);
+      if (auto) recordAutoplay();
+    } catch {
+      setPlaying(false);
+      // Retry once with a fresh load if the cached source was stale
+      if (!auto && currentSrc.current === src) {
+        try {
+          audio.src = `${src}&r=${Date.now()}`;
+          audio.load();
+          await audio.play();
+          setPlaying(true);
+        } catch {
+          setPlaying(false);
+        }
+      }
+    } finally {
+      setAudioLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -290,7 +318,16 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <audio ref={audioRef} onEnded={() => setPlaying(false)} preload="none" />
+      <audio
+        ref={audioRef}
+        onEnded={() => setPlaying(false)}
+        onPause={() => setPlaying(false)}
+        onError={() => {
+          setPlaying(false);
+          setAudioLoading(false);
+        }}
+        preload="auto"
+      />
 
       {/* Navigation */}
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
@@ -346,13 +383,14 @@ function Home() {
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <button
-                onClick={() => play(false)}
-                className="group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+                onClick={() => void play(false)}
+                disabled={audioLoading}
+                className="group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-70"
               >
                 <span className="grid h-6 w-6 place-items-center rounded-full bg-primary-foreground/15">
-                  {playing ? "❚❚" : "▶"}
+                  {audioLoading ? "…" : playing ? "❚❚" : "▶"}
                 </span>
-                {playing ? t.voice.playing : t.hero.cta}
+                {audioLoading ? "…" : playing ? t.voice.playing : t.hero.cta}
               </button>
               <a
                 href="#biographie"
