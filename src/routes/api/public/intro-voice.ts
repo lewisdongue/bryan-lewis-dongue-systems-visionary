@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { VOICE_SCRIPT } from "@/lib/content";
+import { VOICE_SCRIPT, resolveLang } from "@/lib/content";
 
 export const Route = createFileRoute("/api/public/intro-voice")({
   server: {
     handlers: {
       GET: async ({ request }) => {
         const url = new URL(request.url);
-        const lang = url.searchParams.get("lang") === "fr" ? "fr" : "en";
+        const lang = resolveLang(url.searchParams.get("lang") ?? "en");
         const apiKey = process.env["LOVABLE_API_KEY"];
         if (!apiKey) {
           return new Response("Voice service not configured", { status: 503 });
