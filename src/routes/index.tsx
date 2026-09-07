@@ -11,7 +11,7 @@ import workspace from "@/assets/bryan-lewis-dongue-ndiffo-workspace.jpg";
 import official from "@/assets/bryan-lewis-dongue-ndiffo-official.jpg";
 
 const PHOTOS = [
-  { src: ceo, alt: "Bryan Lewis Dongue Ndiffo, CEO of Caakus Inc." },
+  { src: ceo, alt: "Bryan Lewis Dongue Ndiffo, CEO of Caakus" },
   { src: founder, alt: "Bryan Lewis Dongue Ndiffo, founder based in Worms, Germany" },
   { src: architect, alt: "Bryan Lewis Dongue, systems architect in tech" },
   { src: executive, alt: "Bryan Lewis Dongue Ndiffo, executive profile" },
@@ -37,7 +37,7 @@ const personSchema = {
       nationality: { "@type": "Country", name: "Cameroon" },
       jobTitle: ["Founder", "Chief Executive Officer", "Systems Architect"],
       description:
-        "Cameroonian technology entrepreneur and systems architect, founder and CEO of Caakus Inc., a real-time voice-first social infrastructure company based in Worms, Germany.",
+        "Cameroonian technology entrepreneur and systems architect, founder and CEO of Caakus, a real-time voice-first social infrastructure company based in Worms, Germany.",
       knowsAbout: [
         "Systems architecture",
         "Distributed systems",
@@ -69,12 +69,12 @@ const personSchema = {
     {
       "@type": "Organization",
       "@id": "https://www.caakus.com/#organization",
-      name: "Caakus Inc.",
+      name: "Caakus",
       foundingDate: "2025-11-08",
-      legalName: "Caakus Inc.",
+      legalName: "Caakus",
       url: "https://www.caakus.com",
       description:
-        "Caakus Inc. builds a real-time voice-first social platform that instantly connects people through audio and video calls, powered by behavioral matching AI and the Human Value Economy with its Yuyu utility ecosystem.",
+        "Caakus builds a real-time voice-first social platform that instantly connects people through audio and video calls, powered by behavioral matching AI and the Human Value Economy with its Yuyu utility ecosystem.",
       industry: "Technology, Social Networking Infrastructure",
       founder: { "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo" },
       employee: { "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo" },
@@ -99,17 +99,17 @@ const personSchema = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus Inc." },
+      { title: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus" },
       {
         name: "description",
         content:
-          "Official biography of Bryan Lewis Dongue Ndiffo: technology entrepreneur born in 2003 in Yaoundé, systems architect, founder and CEO of Caakus Inc., based in Worms, Germany.",
+          "Official biography of Bryan Lewis Dongue Ndiffo: technology entrepreneur born in 2003 in Yaoundé, systems architect, founder and CEO of Caakus, based in Worms, Germany.",
       },
-      { property: "og:title", content: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus Inc." },
+      { property: "og:title", content: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus" },
       {
         property: "og:description",
         content:
-          "Systems architect, founder and CEO of Caakus Inc. — real-time voice-first social infrastructure, built from Worms, Germany.",
+          "Systems architect, founder and CEO of Caakus — real-time voice-first social infrastructure, built from Worms, Germany.",
       },
       { property: "og:type", content: "profile" },
       { property: "og:url", content: "/" },
@@ -268,7 +268,7 @@ function Home() {
           <figure className="elite-card overflow-hidden rounded-3xl">
             <img
               src={ceo}
-              alt="Bryan Lewis Dongue Ndiffo, founder and CEO of Caakus Inc."
+              alt="Bryan Lewis Dongue Ndiffo, founder and CEO of Caakus"
               className="aspect-4/5 w-full object-cover"
               width={960}
               height={1200}

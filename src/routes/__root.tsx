@@ -77,11 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus Inc." },
+      { title: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus" },
       {
         name: "description",
         content:
-          "Official page of Bryan Lewis Dongue Ndiffo, systems architect, founder and CEO of Caakus Inc., based in Worms, Germany.",
+          "Official page of Bryan Lewis Dongue Ndiffo, systems architect, founder and CEO of Caakus, based in Worms, Germany.",
       },
       { name: "author", content: "Bryan Lewis Dongue Ndiffo" },
       { property: "og:site_name", content: "Bryan Lewis Dongue Ndiffo" },
