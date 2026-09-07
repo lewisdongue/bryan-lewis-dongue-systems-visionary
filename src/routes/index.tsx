@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { COPY, LANGS, PROFILES, resolveLang, type Lang } from "@/lib/content";
 import ceo from "@/assets/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg";
 import founder from "@/assets/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg";
@@ -133,9 +133,9 @@ const WIKI_LINKS: [RegExp, string][] = [
 ];
 
 function LinkedText({ text }: { text: string }) {
-  let parts: (string | React.ReactNode)[] = [text];
+  let parts: (string | ReactNode)[] = [text];
   for (const [re, url] of WIKI_LINKS) {
-    const next: (string | React.ReactNode)[] = [];
+    const next: (string | ReactNode)[] = [];
     let linked = false;
     for (const part of parts) {
       if (typeof part !== "string") {
