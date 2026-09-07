@@ -105,6 +105,24 @@ const personSchema = {
       },
     },
     {
+      "@type": "ProfilePage",
+      "@id": "/#profilepage",
+      url: SITE_URL,
+      name: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus",
+      inLanguage: ["en", "fr", "de", "es", "pt", "it"],
+      mainEntity: { "@id": KG_ID },
+      about: { "@id": KG_ID },
+      isPartOf: { "@id": "/#website" },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "/#website",
+      url: SITE_URL,
+      name: "Bryan Lewis Dongue Ndiffo",
+      inLanguage: ["en", "fr", "de", "es", "pt", "it"],
+      author: { "@id": KG_ID },
+    },
+    {
       "@type": "FAQPage",
       mainEntity: COPY.en.faq.map((f) => ({
         "@type": "Question",
