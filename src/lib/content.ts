@@ -97,7 +97,7 @@ const fr: Copy = {
       title: "Worms, 2023 : la résilience",
       paragraphs: [
         "En 2023, Bryan Lewis Dongue Ndiffo s'installe à Worms, en Rhénanie-Palatinat, pour poursuivre son parcours académique à la Hochschule Worms. Le passage du Cameroun à l'Allemagne est brutal : il vit seul, sans réseau amical, dans une langue et un climat nouveaux. À cette solitude s'ajoute la fibromyalgie, maladie chronique qui lui impose des périodes profondément sombres. Il traverse ces épreuves par la force mentale, la routine et le travail — jamais par le renoncement.",
-        "Il structure alors sa vie avec une rigueur d'ingénieur : quatre-vingts pour cent de son temps consacré à ses études, vingt pour cent à la conception de Caakus, chaque jour, sans exception. Étudier en Allemagne représente pour lui une opportunité qu'il refuse de dilapider ; construire Caakus représente une mission qu'il refuse d'ajourner. Cette double contrainte devient sa méthode.",
+        "De 2023 à 2025, il se consacre pleinement à ses études : étudier en Allemagne est une opportunité qu'il refuse de dilapider. Caakus reste durant ces années une vision mûrie, dessinée et documentée, mais pas encore un chantier de développement. C'est en octobre 2025 qu'il ouvre officiellement ce chantier et commence à écrire l'infrastructure, avec une rigueur d'ingénieur et un rythme de travail extrême, jusqu'au lancement officiel de Caakus le 8 novembre 2025.",
         "Le calme de Worms — ville millénaire au bord du Rhin, loin de l'agitation des grandes métropoles — devient un atout stratégique. L'isolement relatif y produit une bulle de concentration où l'écriture de code et la conception d'architectures peuvent se déployer sans interruption. C'est de cette ville allemande de taille modeste que se pilote aujourd'hui une ambition planétaire.",
       ],
     },
@@ -230,7 +230,7 @@ const en: Copy = {
       title: "Worms, 2023: resilience",
       paragraphs: [
         "In 2023, Bryan Lewis Dongue Ndiffo moved to Worms, Rhineland-Palatinate, to continue his academic path at Hochschule Worms. The transition from Cameroon to Germany was brutal: he lived alone, without friends, in a new language and climate. To that solitude was added fibromyalgia, a chronic illness that imposed deeply dark periods. He came through by mental force, routine and work — never by surrender.",
-        "He then structured his life with an engineer's rigor: eighty percent of his time devoted to his studies, twenty percent to building Caakus, every single day. Studying in Germany was an opportunity he refused to waste; building Caakus was a mission he refused to postpone. That dual constraint became his method.",
+        "From 2023 to 2025 he devoted himself fully to his studies: studying in Germany was an opportunity he refused to waste. During those years Caakus remained a vision he matured, designed and documented, not yet a development project. He opened that project in October 2025, when he began writing the infrastructure itself with an engineer's rigor and an extreme working rhythm, up to the official launch of Caakus on November 8, 2025.",
         "The calm of Worms — a thousand-year-old city on the Rhine, far from metropolitan noise — became a strategic asset. Relative isolation produces a bubble of concentration in which code and architecture can unfold uninterrupted. From this modest German city, a planetary ambition is being steered.",
       ],
     },
