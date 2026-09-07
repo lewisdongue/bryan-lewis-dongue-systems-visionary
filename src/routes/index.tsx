@@ -150,7 +150,18 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "profile" },
       { property: "og:url", content: "/" },
+      { property: "og:profile:first_name", content: "Bryan Lewis" },
+      { property: "og:profile:last_name", content: "Dongue Ndiffo" },
+      { property: "og:profile:username", content: "lewisdongue" },
+      { property: "og:profile:gender", content: "male" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@BryanNdiffo" },
+      { name: "twitter:creator", content: "@BryanNdiffo" },
+      {
+        name: "keywords",
+        content:
+          "Bryan Lewis Dongue Ndiffo, Bryan Ndiffo, Lewis Dongue, Caakus, founder CEO Caakus, systems architect, Worms Germany, Yaoundé, Hochschule Worms",
+      },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [{ type: "application/ld+json", children: JSON.stringify(personSchema) }],
