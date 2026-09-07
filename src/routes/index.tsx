@@ -21,13 +21,25 @@ const PHOTOS = [
   { src: official, alt: "Bryan Lewis Dongue Ndiffo, official portrait" },
 ];
 
+const KG_ID = "https://g.co/kg/g/11yzdg014n";
+const SITE_URL = "/";
+
 const personSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://g.co/kg/g/11yzdg014n",
+      "@id": KG_ID,
       name: "Bryan Lewis Dongue Ndiffo",
+      url: SITE_URL,
+      identifier: [
+        {
+          "@type": "PropertyValue",
+          propertyID: "Google Knowledge Graph ID",
+          value: "/g/11yzdg014n",
+          url: KG_ID,
+        },
+      ],
       alternateName: ["Bryan Lewis Dongue", "Bryan Ndiffo", "Lewis Dongue"],
       givenName: "Bryan Lewis",
       familyName: "Dongue Ndiffo",
@@ -64,26 +76,51 @@ const personSchema = {
       worksFor: { "@id": "https://www.caakus.com/#organization" },
       founder: { "@id": "https://www.caakus.com/#organization" },
       image: PHOTOS.map((p) => p.src),
-      sameAs: ["https://g.co/kg/g/11yzdg014n", ...PROFILES.map((p) => p.url)],
+      sameAs: [KG_ID, ...PROFILES.map((p) => p.url)],
+      mainEntityOfPage: { "@id": "/#profilepage" },
     },
     {
       "@type": "Organization",
       "@id": "https://www.caakus.com/#organization",
       name: "Caakus",
+      alternateName: "Caakus Inc.",
       foundingDate: "2025-11-08",
       legalName: "Caakus",
       url: "https://www.caakus.com",
+      logo: PHOTOS[0]!.src,
       description:
         "Caakus builds a real-time voice-first social platform that instantly connects people through audio and video calls, powered by behavioral matching AI and the Human Value Economy with its Yuyu utility ecosystem.",
       industry: "Technology, Social Networking Infrastructure",
-      founder: { "@id": "https://g.co/kg/g/11yzdg014n" },
-      employee: { "@id": "https://g.co/kg/g/11yzdg014n" },
+      founder: { "@id": KG_ID },
+      employee: { "@id": KG_ID },
+      sameAs: [
+        "https://www.crunchbase.com/organization/caakus",
+        "https://github.com/lewisdongue/lewisdongue/wiki/Caakus%E2%80%90Company%E2%80%90Profile",
+      ],
       address: {
         "@type": "PostalAddress",
         addressLocality: "Worms",
         addressRegion: "Rhineland-Palatinate",
         addressCountry: "DE",
       },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "/#profilepage",
+      url: SITE_URL,
+      name: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus",
+      inLanguage: ["en", "fr", "de", "es", "pt", "it"],
+      mainEntity: { "@id": KG_ID },
+      about: { "@id": KG_ID },
+      isPartOf: { "@id": "/#website" },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "/#website",
+      url: SITE_URL,
+      name: "Bryan Lewis Dongue Ndiffo",
+      inLanguage: ["en", "fr", "de", "es", "pt", "it"],
+      author: { "@id": KG_ID },
     },
     {
       "@type": "FAQPage",
@@ -113,7 +150,18 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "profile" },
       { property: "og:url", content: "/" },
+      { property: "og:profile:first_name", content: "Bryan Lewis" },
+      { property: "og:profile:last_name", content: "Dongue Ndiffo" },
+      { property: "og:profile:username", content: "lewisdongue" },
+      { property: "og:profile:gender", content: "male" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@BryanNdiffo" },
+      { name: "twitter:creator", content: "@BryanNdiffo" },
+      {
+        name: "keywords",
+        content:
+          "Bryan Lewis Dongue Ndiffo, Bryan Ndiffo, Lewis Dongue, Caakus, founder CEO Caakus, systems architect, Worms Germany, Yaoundé, Hochschule Worms",
+      },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [{ type: "application/ld+json", children: JSON.stringify(personSchema) }],
@@ -209,6 +257,10 @@ function Home() {
   useEffect(() => {
     setLang(resolveLang(navigator.language));
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const t = COPY[lang];
 
