@@ -123,7 +123,7 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const VOICE_KEY = "blдn-voice-plays";
+const VOICE_KEY = "bldn-voice-plays";
 
 function canPlayVoice(): boolean {
   try {
