@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { COPY, PROFILES, type Lang } from "@/lib/content";
+import { COPY, LANGS, PROFILES, resolveLang, type Lang } from "@/lib/content";
 import ceo from "@/assets/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg";
 import founder from "@/assets/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg";
 import architect from "@/assets/bryan-lewis-dongue-systems-architect-tech.jpg";
@@ -121,9 +121,9 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const VOICE_KEY = "bldn-voice-plays";
+const VOICE_KEY = "bldn-voice-autoplays";
 
-function canPlayVoice(): boolean {
+function canAutoplay(): boolean {
   try {
     const today = new Date().toISOString().slice(0, 10);
     const raw = localStorage.getItem(VOICE_KEY);
@@ -135,7 +135,7 @@ function canPlayVoice(): boolean {
   }
 }
 
-function recordVoicePlay() {
+function recordAutoplay() {
   try {
     const today = new Date().toISOString().slice(0, 10);
     const raw = localStorage.getItem(VOICE_KEY);
@@ -150,19 +150,17 @@ function recordVoicePlay() {
 function Home() {
   const [lang, setLang] = useState<Lang>("en");
   const [playing, setPlaying] = useState(false);
-  const [voiceError, setVoiceError] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const autoTried = useRef(false);
 
   useEffect(() => {
-    const nav = navigator.language?.toLowerCase() ?? "en";
-    setLang(nav.startsWith("fr") ? "fr" : "en");
+    setLang(resolveLang(navigator.language));
   }, []);
 
   const t = COPY[lang];
 
   const play = (auto = false) => {
-    if (!canPlayVoice()) return;
+    if (auto && !canAutoplay()) return;
     const audio = audioRef.current;
     if (!audio) return;
     audio.src = `/api/public/intro-voice?lang=${lang}`;
@@ -170,11 +168,10 @@ function Home() {
       .play()
       .then(() => {
         setPlaying(true);
-        setVoiceError(false);
-        recordVoicePlay();
+        if (auto) recordAutoplay();
       })
       .catch(() => {
-        if (!auto) setVoiceError(true);
+        setPlaying(false);
       });
   };
 
@@ -204,15 +201,15 @@ function Home() {
             ))}
           </nav>
           <div className="flex shrink-0 items-center gap-1 rounded-full border border-border p-1 text-xs">
-            {(["en", "fr"] as Lang[]).map((l) => (
+            {LANGS.map((l) => (
               <button
-                key={l}
-                onClick={() => setLang(l)}
-                className={`rounded-full px-3 py-1 uppercase tracking-widest transition-colors ${
-                  lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground"
+                key={l.code}
+                onClick={() => setLang(l.code)}
+                className={`rounded-full px-2.5 py-1 uppercase tracking-widest transition-colors ${
+                  lang === l.code ? "bg-primary text-primary-foreground" : "text-muted-foreground"
                 }`}
               >
-                {l}
+                {l.label}
               </button>
             ))}
           </div>
@@ -261,7 +258,6 @@ function Home() {
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
               {t.voice.title} · {t.voice.hint}
-              {voiceError ? ` — ${t.voice.error}` : ""}
             </p>
           </div>
 
@@ -306,6 +302,7 @@ function Home() {
                 <img
                   src={photo.src}
                   alt={photo.alt}
+                  title={photo.alt}
                   loading="lazy"
                   className="aspect-4/5 w-full object-cover"
                 />
@@ -360,6 +357,7 @@ function Home() {
               <img
                 src={p.src}
                 alt={p.alt}
+                title={p.alt}
                 loading="lazy"
                 className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105"
               />
