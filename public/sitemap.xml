@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://lewisdongue.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://lewisdongue.com/images/bryan-lewis-dongue-ndiffo-official.jpg</image:loc>
+      <image:title>Bryan Lewis Dongue Ndiffo — Official Portrait</image:title>
+      <image:caption>Bryan Lewis Dongue Ndiffo, Founder and CEO of Caakus, official portrait.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lewisdongue.com/images/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg</image:loc>
+      <image:title>Bryan Lewis Dongue Ndiffo — CEO of Caakus</image:title>
+      <image:caption>Bryan Lewis Dongue Ndiffo, Founder and CEO of Caakus.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lewisdongue.com/images/bryan-lewis-dongue-ndiffo-executive-profile.jpg</image:loc>
+      <image:title>Bryan Lewis Dongue Ndiffo — Executive Profile</image:title>
+      <image:caption>Executive profile portrait of Bryan Lewis Dongue Ndiffo.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lewisdongue.com/images/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg</image:loc>
+      <image:title>Bryan Lewis Dongue Ndiffo — Founder, Worms, Germany</image:title>
+      <image:caption>Bryan Lewis Dongue Ndiffo, technology founder based in Worms, Germany.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lewisdongue.com/images/bryan-lewis-dongue-ndiffo-leadership.jpg</image:loc>
+      <image:title>Bryan Lewis Dongue Ndiffo — Leadership</image:title>
+      <image:caption>Leadership portrait of Bryan Lewis Dongue Ndiffo.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lewisdongue.com/images/bryan-lewis-dongue-ndiffo-software-engineer.jpg</image:loc>
+      <image:title>Bryan Lewis Dongue Ndiffo — Software Engineer</image:title>
+      <image:caption>Bryan Lewis Dongue Ndiffo, systems architect and software engineer.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lewisdongue.com/images/bryan-lewis-dongue-ndiffo-workspace.jpg</image:loc>
+      <image:title>Bryan Lewis Dongue Ndiffo — Workspace</image:title>
+      <image:caption>Bryan Lewis Dongue Ndiffo at his workspace in Worms, Germany.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://lewisdongue.com/images/bryan-lewis-dongue-systems-architect-tech.jpg</image:loc>
+      <image:title>Bryan Lewis Dongue — Systems Architect</image:title>
+      <image:caption>Bryan Lewis Dongue Ndiffo, Systems Architect of Caakus.</image:caption>
+    </image:image>
+  </url>
+</urlset>
