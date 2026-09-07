@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicIntroVoiceRouteImport } from './routes/api/public/intro-voice'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicIntroVoiceRoute = ApiPublicIntroVoiceRouteImport.update({
+  id: '/api/public/intro-voice',
+  path: '/api/public/intro-voice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/intro-voice': typeof ApiPublicIntroVoiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/intro-voice': typeof ApiPublicIntroVoiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/intro-voice': typeof ApiPublicIntroVoiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/public/intro-voice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/public/intro-voice'
+  id: '__root__' | '/' | '/api/public/intro-voice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicIntroVoiceRoute: typeof ApiPublicIntroVoiceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/intro-voice': {
+      id: '/api/public/intro-voice'
+      path: '/api/public/intro-voice'
+      fullPath: '/api/public/intro-voice'
+      preLoaderRoute: typeof ApiPublicIntroVoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicIntroVoiceRoute: ApiPublicIntroVoiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
