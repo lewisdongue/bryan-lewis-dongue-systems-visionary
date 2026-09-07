@@ -258,6 +258,10 @@ function Home() {
     setLang(resolveLang(navigator.language));
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const t = COPY[lang];
 
   const play = (auto = false) => {
