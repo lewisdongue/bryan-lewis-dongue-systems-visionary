@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { VOICE_SCRIPT } from "@/lib/content";
+import { VOICE_SCRIPT, resolveLang } from "@/lib/content";
 
 export const Route = createFileRoute("/api/public/intro-voice")({
   server: {
