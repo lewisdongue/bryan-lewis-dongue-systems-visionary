@@ -278,7 +278,7 @@ function Home() {
       return;
     }
 
-    const src = `/api/public/intro-voice?lang=${lang}`;
+    const src = `/audio/intro-${lang}.mp3`;
     if (currentSrc.current !== src) {
       currentSrc.current = src;
       audio.src = src;
