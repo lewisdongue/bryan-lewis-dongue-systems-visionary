@@ -9,7 +9,7 @@
 [![IMDb](https://img.shields.io/badge/IMDb-F5C518?style=for-the-badge&logo=imdb&logoColor=black)](https://www.imdb.com/name/nm18253151/)
 [![X (Twitter)](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=X&logoColor=white)](https://x.com/BryanNdiffo)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/lewis_ndiffo)
-
+[![Official Website](https://img.shields.io/badge/Entity_Home-lewisdongue.com-D4AF37?style=for-the-badge&logo=google-chrome&logoColor=white)](https://lewisdongue.com)
 </div>
 
 ---
