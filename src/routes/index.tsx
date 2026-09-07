@@ -1,24 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { COPY, PROFILES, type Lang } from "@/lib/content";
-import ceo from "@/assets/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg.asset.json";
-import founder from "@/assets/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg.asset.json";
-import architect from "@/assets/bryan-lewis-dongue-systems-architect-tech.jpg.asset.json";
-import executive from "@/assets/bryan-lewis-dongue-ndiffo-executive-profile.jpg.asset.json";
-import engineer from "@/assets/bryan-lewis-dongue-ndiffo-software-engineer.jpg.asset.json";
-import leadership from "@/assets/bryan-lewis-dongue-ndiffo-leadership.jpg.asset.json";
-import workspace from "@/assets/bryan-lewis-dongue-ndiffo-workspace.jpg.asset.json";
-import official from "@/assets/bryan-lewis-dongue-ndiffo-official.jpg.asset.json";
+import ceo from "@/assets/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg";
+import founder from "@/assets/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg";
+import architect from "@/assets/bryan-lewis-dongue-systems-architect-tech.jpg";
+import executive from "@/assets/bryan-lewis-dongue-ndiffo-executive-profile.jpg";
+import engineer from "@/assets/bryan-lewis-dongue-ndiffo-software-engineer.jpg";
+import leadership from "@/assets/bryan-lewis-dongue-ndiffo-leadership.jpg";
+import workspace from "@/assets/bryan-lewis-dongue-ndiffo-workspace.jpg";
+import official from "@/assets/bryan-lewis-dongue-ndiffo-official.jpg";
 
 const PHOTOS = [
-  { src: ceo.url, alt: "Bryan Lewis Dongue Ndiffo, CEO of Caakus Inc." },
-  { src: founder.url, alt: "Bryan Lewis Dongue Ndiffo, founder based in Worms, Germany" },
-  { src: architect.url, alt: "Bryan Lewis Dongue, systems architect in tech" },
-  { src: executive.url, alt: "Bryan Lewis Dongue Ndiffo, executive profile" },
-  { src: engineer.url, alt: "Bryan Lewis Dongue Ndiffo, software engineer" },
-  { src: leadership.url, alt: "Bryan Lewis Dongue Ndiffo, leadership portrait" },
-  { src: workspace.url, alt: "Bryan Lewis Dongue Ndiffo in his workspace" },
-  { src: official.url, alt: "Bryan Lewis Dongue Ndiffo, official portrait" },
+  { src: ceo, alt: "Bryan Lewis Dongue Ndiffo, CEO of Caakus Inc." },
+  { src: founder, alt: "Bryan Lewis Dongue Ndiffo, founder based in Worms, Germany" },
+  { src: architect, alt: "Bryan Lewis Dongue, systems architect in tech" },
+  { src: executive, alt: "Bryan Lewis Dongue Ndiffo, executive profile" },
+  { src: engineer, alt: "Bryan Lewis Dongue Ndiffo, software engineer" },
+  { src: leadership, alt: "Bryan Lewis Dongue Ndiffo, leadership portrait" },
+  { src: workspace, alt: "Bryan Lewis Dongue Ndiffo in his workspace" },
+  { src: official, alt: "Bryan Lewis Dongue Ndiffo, official portrait" },
 ];
 
 const personSchema = {
@@ -74,7 +74,7 @@ const personSchema = {
       url: "https://www.caakus.com",
       description:
         "Caakus Inc. builds a real-time voice-first social platform that instantly connects people through audio and video calls, powered by behavioral matching AI and the Human Value Economy with its Yuyu utility ecosystem.",
-      foundingDate: "2020",
+      foundingDate: "2025-11-08",
       industry: "Technology, Social Networking Infrastructure",
       founder: { "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo" },
       employee: { "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo" },
@@ -113,9 +113,9 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "profile" },
       { property: "og:url", content: "/" },
-      { property: "og:image", content: ceo.url },
+      { property: "og:image", content: ceo },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: ceo.url },
+      { name: "twitter:image", content: ceo },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [{ type: "application/ld+json", children: JSON.stringify(personSchema) }],
@@ -269,7 +269,7 @@ function Home() {
 
           <figure className="elite-card overflow-hidden rounded-3xl">
             <img
-              src={ceo.url}
+              src={ceo}
               alt="Bryan Lewis Dongue Ndiffo, founder and CEO of Caakus Inc."
               className="aspect-4/5 w-full object-cover"
               width={960}
