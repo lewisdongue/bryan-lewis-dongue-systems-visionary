@@ -251,8 +251,10 @@ function recordAutoplay() {
 function Home() {
   const [lang, setLang] = useState<Lang>("en");
   const [playing, setPlaying] = useState(false);
+  const [audioLoading, setAudioLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const autoTried = useRef(false);
+  const currentSrc = useRef<string | null>(null);
 
   useEffect(() => {
     setLang(resolveLang(navigator.language));
