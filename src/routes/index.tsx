@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { COPY, LANGS, PROFILES, resolveLang, type Lang } from "@/lib/content";
 import ceo from "@/assets/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg";
 import founder from "@/assets/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg";
@@ -26,7 +26,7 @@ const personSchema = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo",
+      "@id": "https://g.co/kg/g/11yzdg014n",
       name: "Bryan Lewis Dongue Ndiffo",
       alternateName: ["Bryan Lewis Dongue", "Bryan Ndiffo", "Lewis Dongue"],
       givenName: "Bryan Lewis",
@@ -64,7 +64,7 @@ const personSchema = {
       worksFor: { "@id": "https://www.caakus.com/#organization" },
       founder: { "@id": "https://www.caakus.com/#organization" },
       image: PHOTOS.map((p) => p.src),
-      sameAs: PROFILES.map((p) => p.url),
+      sameAs: ["https://g.co/kg/g/11yzdg014n", ...PROFILES.map((p) => p.url)],
     },
     {
       "@type": "Organization",
@@ -76,8 +76,8 @@ const personSchema = {
       description:
         "Caakus builds a real-time voice-first social platform that instantly connects people through audio and video calls, powered by behavioral matching AI and the Human Value Economy with its Yuyu utility ecosystem.",
       industry: "Technology, Social Networking Infrastructure",
-      founder: { "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo" },
-      employee: { "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo" },
+      founder: { "@id": "https://g.co/kg/g/11yzdg014n" },
+      employee: { "@id": "https://g.co/kg/g/11yzdg014n" },
       address: {
         "@type": "PostalAddress",
         addressLocality: "Worms",
@@ -120,6 +120,59 @@ export const Route = createFileRoute("/")({
   }),
   component: Home,
 });
+
+const WIKI_LINKS: [RegExp, string][] = [
+  [/\bYaoundé\b/, "https://en.wikipedia.org/wiki/Yaound%C3%A9"],
+  [/\bHochschule Worms\b/, "https://en.wikipedia.org/wiki/Hochschule_Worms"],
+  [/\bWorms(, Germany)?\b/, "https://en.wikipedia.org/wiki/Worms,_Germany"],
+  [/\bMark Zuckerberg\b/, "https://en.wikipedia.org/wiki/Mark_Zuckerberg"],
+  [/\bSteve Jobs\b/, "https://en.wikipedia.org/wiki/Steve_Jobs"],
+  [/\bPavel Durov\b/, "https://en.wikipedia.org/wiki/Pavel_Durov"],
+  [/\bBrian Acton\b/, "https://en.wikipedia.org/wiki/Brian_Acton"],
+  [/\bSystems Architect\b|\bSystems architecture\b|\bsystems architect\b/i, "https://en.wikipedia.org/wiki/Systems_architecture"],
+];
+
+function LinkedText({ text }: { text: string }) {
+  let parts: (string | ReactNode)[] = [text];
+  for (const [re, url] of WIKI_LINKS) {
+    const next: (string | ReactNode)[] = [];
+    let linked = false;
+    for (const part of parts) {
+      if (typeof part !== "string") {
+        next.push(part);
+        continue;
+      }
+      const segs = part.split(re);
+      if (segs.length === 1) {
+        next.push(part);
+        continue;
+      }
+      segs.forEach((seg, i) => {
+        next.push(seg);
+        if (i < segs.length - 1) {
+          if (linked) {
+            next.push(part.match(re)?.[0] ?? "");
+          } else {
+            linked = true;
+            next.push(
+              <a
+                key={`${url}-${next.length}`}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-inherit underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary"
+              >
+                {part.match(re)?.[0]}
+              </a>
+            );
+          }
+        }
+      });
+    }
+    parts = next;
+  }
+  return <>{parts}</>;
+}
 
 const VOICE_KEY = "bldn-voice-autoplays";
 
@@ -313,7 +366,7 @@ function Home() {
                 <h2 className="mt-3 text-3xl sm:text-4xl">{s.title}</h2>
                 <div className="mt-6 space-y-5 text-base leading-8 text-muted-foreground">
                   {s.paragraphs.map((p, k) => (
-                    <p key={k}>{p}</p>
+                    <p key={k}><LinkedText text={p} /></p>
                   ))}
                 </div>
               </div>
