@@ -1,24 +1,414 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
+import { COPY, PROFILES, type Lang } from "@/lib/content";
+import ceo from "@/assets/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg.asset.json";
+import founder from "@/assets/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg.asset.json";
+import architect from "@/assets/bryan-lewis-dongue-systems-architect-tech.jpg.asset.json";
+import executive from "@/assets/bryan-lewis-dongue-ndiffo-executive-profile.jpg.asset.json";
+import engineer from "@/assets/bryan-lewis-dongue-ndiffo-software-engineer.jpg.asset.json";
+import leadership from "@/assets/bryan-lewis-dongue-ndiffo-leadership.jpg.asset.json";
+import workspace from "@/assets/bryan-lewis-dongue-ndiffo-workspace.jpg.asset.json";
+import official from "@/assets/bryan-lewis-dongue-ndiffo-official.jpg.asset.json";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const PHOTOS = [
+  { src: ceo.url, alt: "Bryan Lewis Dongue Ndiffo, CEO of Caakus Inc." },
+  { src: founder.url, alt: "Bryan Lewis Dongue Ndiffo, founder based in Worms, Germany" },
+  { src: architect.url, alt: "Bryan Lewis Dongue, systems architect in tech" },
+  { src: executive.url, alt: "Bryan Lewis Dongue Ndiffo, executive profile" },
+  { src: engineer.url, alt: "Bryan Lewis Dongue Ndiffo, software engineer" },
+  { src: leadership.url, alt: "Bryan Lewis Dongue Ndiffo, leadership portrait" },
+  { src: workspace.url, alt: "Bryan Lewis Dongue Ndiffo in his workspace" },
+  { src: official.url, alt: "Bryan Lewis Dongue Ndiffo, official portrait" },
+];
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo",
+      name: "Bryan Lewis Dongue Ndiffo",
+      alternateName: ["Bryan Lewis Dongue", "Bryan Ndiffo", "Lewis Dongue"],
+      givenName: "Bryan Lewis",
+      familyName: "Dongue Ndiffo",
+      gender: "Male",
+      birthDate: "2003-11-18",
+      birthPlace: { "@type": "Place", name: "Yaoundé, Cameroon" },
+      nationality: { "@type": "Country", name: "Cameroon" },
+      jobTitle: ["Founder", "Chief Executive Officer", "Systems Architect"],
+      description:
+        "Cameroonian technology entrepreneur and systems architect, founder and CEO of Caakus Inc., a real-time voice-first social infrastructure company based in Worms, Germany.",
+      knowsAbout: [
+        "Systems architecture",
+        "Distributed systems",
+        "Real-time voice infrastructure",
+        "Artificial intelligence",
+        "Clean code",
+        "Software engineering",
+        "Human Value Economy",
+      ],
+      knowsLanguage: ["French", "English", "German"],
+      homeLocation: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Worms",
+          addressRegion: "Rhineland-Palatinate",
+          addressCountry: "DE",
+        },
+      },
+      alumniOf: [
+        { "@type": "EducationalOrganization", name: "Lycée de Mendong", address: "Yaoundé, Cameroon" },
+        { "@type": "CollegeOrUniversity", name: "Hochschule Worms", address: "Worms, Germany" },
+      ],
+      worksFor: { "@id": "https://www.caakus.com/#organization" },
+      founder: { "@id": "https://www.caakus.com/#organization" },
+      image: PHOTOS.map((p) => p.src),
+      sameAs: PROFILES.map((p) => p.url),
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.caakus.com/#organization",
+      name: "Caakus Inc.",
+      legalName: "Caakus Inc.",
+      url: "https://www.caakus.com",
+      description:
+        "Caakus Inc. builds a real-time voice-first social platform that instantly connects people through audio and video calls, powered by behavioral matching AI and the Human Value Economy with its Yuyu utility ecosystem.",
+      foundingDate: "2020",
+      industry: "Technology, Social Networking Infrastructure",
+      founder: { "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo" },
+      employee: { "@id": "https://www.caakus.com/About#bryan-lewis-dongue-ndiffo" },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Worms",
+        addressRegion: "Rhineland-Palatinate",
+        addressCountry: "DE",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: COPY.en.faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ],
+};
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus Inc." },
+      {
+        name: "description",
+        content:
+          "Official biography of Bryan Lewis Dongue Ndiffo: technology entrepreneur born in 2003 in Yaoundé, systems architect, founder and CEO of Caakus Inc., based in Worms, Germany.",
+      },
+      { property: "og:title", content: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus Inc." },
+      {
+        property: "og:description",
+        content:
+          "Systems architect, founder and CEO of Caakus Inc. — real-time voice-first social infrastructure, built from Worms, Germany.",
+      },
+      { property: "og:type", content: "profile" },
+      { property: "og:url", content: "/" },
+      { property: "og:image", content: ceo.url },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: ceo.url },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(personSchema) }],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const VOICE_KEY = "blдn-voice-plays";
+
+function canPlayVoice(): boolean {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const raw = localStorage.getItem(VOICE_KEY);
+    const data = raw ? (JSON.parse(raw) as { date: string; count: number }) : null;
+    if (!data || data.date !== today) return true;
+    return data.count < 2;
+  } catch {
+    return false;
+  }
+}
+
+function recordVoicePlay() {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const raw = localStorage.getItem(VOICE_KEY);
+    const data = raw ? (JSON.parse(raw) as { date: string; count: number }) : null;
+    const count = data && data.date === today ? data.count + 1 : 1;
+    localStorage.setItem(VOICE_KEY, JSON.stringify({ date: today, count }));
+  } catch {
+    /* ignore */
+  }
+}
+
+function Home() {
+  const [lang, setLang] = useState<Lang>("en");
+  const [playing, setPlaying] = useState(false);
+  const [voiceError, setVoiceError] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const autoTried = useRef(false);
+
+  useEffect(() => {
+    const nav = navigator.language?.toLowerCase() ?? "en";
+    setLang(nav.startsWith("fr") ? "fr" : "en");
+  }, []);
+
+  const t = COPY[lang];
+
+  const play = (auto = false) => {
+    if (!canPlayVoice()) return;
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.src = `/api/public/intro-voice?lang=${lang}`;
+    audio
+      .play()
+      .then(() => {
+        setPlaying(true);
+        setVoiceError(false);
+        recordVoicePlay();
+      })
+      .catch(() => {
+        if (!auto) setVoiceError(true);
+      });
+  };
+
+  useEffect(() => {
+    if (autoTried.current) return;
+    autoTried.current = true;
+    const timer = setTimeout(() => play(true), 1200);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <audio ref={audioRef} onEnded={() => setPlaying(false)} preload="none" />
+
+      {/* Navigation */}
+      <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
+        <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:flex sm:justify-between">
+          <span className="truncate font-display text-lg tracking-tight">
+            Bryan Lewis Dongue Ndiffo
+          </span>
+          <nav className="hidden items-center gap-6 text-xs uppercase tracking-[0.18em] text-muted-foreground lg:flex">
+            {t.nav.map((n) => (
+              <a key={n.id} href={`#${n.id}`} className="transition-colors hover:text-primary">
+                {n.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex shrink-0 items-center gap-1 rounded-full border border-border p-1 text-xs">
+            {(["en", "fr"] as Lang[]).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`rounded-full px-3 py-1 uppercase tracking-widest transition-colors ${
+                  lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground"
+                }`}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section id="profil" className="halo relative overflow-hidden">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-[1.15fr_0.85fr] md:items-center md:py-28">
+          <div>
+            <p className="eyebrow">{t.hero.location}</p>
+            <h1 className="mt-5 text-5xl leading-[1.05] sm:text-6xl md:text-7xl">
+              {t.hero.name}
+            </h1>
+            <p className="mt-5 font-display text-2xl text-primary">{t.hero.tagline}</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {t.hero.roles.map((r) => (
+                <span
+                  key={r}
+                  className="rounded-full border border-border px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-muted-foreground"
+                >
+                  {r}
+                </span>
+              ))}
+            </div>
+            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              {t.hero.intro}
+            </p>
+
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <button
+                onClick={() => play(false)}
+                className="group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+              >
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-primary-foreground/15">
+                  {playing ? "❚❚" : "▶"}
+                </span>
+                {playing ? t.voice.playing : t.hero.cta}
+              </button>
+              <a
+                href="#biographie"
+                className="text-sm uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                {t.hero.ctaAlt}
+              </a>
+            </div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              {t.voice.title} · {t.voice.hint}
+              {voiceError ? ` — ${t.voice.error}` : ""}
+            </p>
+          </div>
+
+          <figure className="elite-card overflow-hidden rounded-3xl">
+            <img
+              src={ceo.url}
+              alt="Bryan Lewis Dongue Ndiffo, founder and CEO of Caakus Inc."
+              className="aspect-4/5 w-full object-cover"
+              width={960}
+              height={1200}
+            />
+          </figure>
+        </div>
+      </section>
+
+      <div className="gold-rule h-px w-full" />
+
+      {/* Key facts */}
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          {t.facts.map((f) => (
+            <div key={f.label} className="border-l border-border pl-4">
+              <dt className="eyebrow">{f.label}</dt>
+              <dd className="mt-1.5 text-sm leading-relaxed">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {/* Narrative sections */}
+      {t.sections.map((s, i) => {
+        const photo = PHOTOS[(i % (PHOTOS.length - 1)) + 1]!;
+        const flip = i % 2 === 1;
+        return (
+          <section key={s.id} id={s.id} className="mx-auto max-w-6xl px-5 py-16">
+            <div
+              className={`grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start ${
+                flip ? "lg:[&>figure]:order-2" : ""
+              }`}
+            >
+              <figure className="elite-card overflow-hidden rounded-2xl lg:sticky lg:top-28">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading="lazy"
+                  className="aspect-4/5 w-full object-cover"
+                />
+              </figure>
+              <div>
+                <p className="eyebrow">{s.eyebrow}</p>
+                <h2 className="mt-3 text-3xl sm:text-4xl">{s.title}</h2>
+                <div className="mt-6 space-y-5 text-base leading-8 text-muted-foreground">
+                  {s.paragraphs.map((p, k) => (
+                    <p key={k}>{p}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* Timeline */}
+      <section className="mx-auto max-w-4xl px-5 py-16">
+        <h2 className="text-3xl sm:text-4xl">{t.timelineTitle}</h2>
+        <ol className="mt-10 space-y-8 border-l border-border pl-6">
+          {t.timeline.map((e) => (
+            <li key={e.year} className="relative">
+              <span className="absolute -left-[31px] top-2 h-2.5 w-2.5 rounded-full bg-primary" />
+              <p className="eyebrow">{e.year}</p>
+              <h3 className="mt-1 text-xl">{e.title}</h3>
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">{e.text}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* Quotes */}
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <h2 className="text-3xl sm:text-4xl">{t.quotesTitle}</h2>
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          {t.quotes.map((q) => (
+            <blockquote key={q} className="elite-card rounded-2xl p-7 font-display text-xl leading-snug">
+              “{q}”
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <h2 className="text-3xl sm:text-4xl">{t.galleryTitle}</h2>
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {PHOTOS.map((p) => (
+            <figure key={p.src} className="elite-card overflow-hidden rounded-xl">
+              <img
+                src={p.src}
+                alt={p.alt}
+                loading="lazy"
+                className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mx-auto max-w-4xl px-5 py-16">
+        <h2 className="text-3xl sm:text-4xl">{t.faqTitle}</h2>
+        <div className="mt-8 divide-y divide-border border-y border-border">
+          {t.faq.map((f) => (
+            <details key={f.q} className="group py-5">
+              <summary className="cursor-pointer list-none text-lg marker:hidden">
+                <span className="font-display">{f.q}</span>
+              </summary>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* Profiles */}
+      <section id="profils" className="mx-auto max-w-6xl px-5 py-16">
+        <h2 className="text-3xl sm:text-4xl">{t.profilesTitle}</h2>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">{t.profilesLead}</p>
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {PROFILES.map((p) => (
+            <a
+              key={p.name}
+              href={p.url}
+              rel="me noopener"
+              target="_blank"
+              className="elite-card flex items-center justify-between rounded-xl px-5 py-4 text-sm transition-colors hover:border-primary"
+            >
+              <span>{p.name}</span>
+              <span className="text-primary">↗</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <footer className="border-t border-border px-5 py-10 text-center text-xs text-muted-foreground">
+        <p>{t.footer}</p>
+        <p className="mt-2">© {new Date().getFullYear()} Bryan Lewis Dongue Ndiffo</p>
+      </footer>
     </div>
   );
 }
