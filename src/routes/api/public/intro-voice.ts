@@ -6,7 +6,7 @@ export const Route = createFileRoute("/api/public/intro-voice")({
     handlers: {
       GET: async ({ request }) => {
         const url = new URL(request.url);
-        const lang = url.searchParams.get("lang") === "fr" ? "fr" : "en";
+        const lang = resolveLang(url.searchParams.get("lang") ?? "en");
         const apiKey = process.env["LOVABLE_API_KEY"];
         if (!apiKey) {
           return new Response("Voice service not configured", { status: 503 });
