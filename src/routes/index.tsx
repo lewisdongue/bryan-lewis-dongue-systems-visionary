@@ -264,7 +264,8 @@ function Home() {
           <figure className="elite-card overflow-hidden rounded-3xl">
             <img
               src={ceo}
-              alt="Bryan Lewis Dongue Ndiffo, founder and CEO of Caakus"
+              alt="Bryan Lewis Dongue Ndiffo, founder and CEO of Caakus, systems architect in Worms, Germany"
+              title="Bryan Lewis Dongue Ndiffo — founder and CEO of Caakus, Worms, Germany"
               className="aspect-4/5 w-full object-cover"
               width={960}
               height={1200}
