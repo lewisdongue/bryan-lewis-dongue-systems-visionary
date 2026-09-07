@@ -1,20 +1,42 @@
-export type Lang = "fr" | "en";
+export type Lang = "en" | "fr" | "de" | "es" | "pt" | "it";
+
+export const LANGS: { code: Lang; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "fr", label: "FR" },
+  { code: "de", label: "DE" },
+  { code: "es", label: "ES" },
+  { code: "pt", label: "PT" },
+  { code: "it", label: "IT" },
+];
+
+export function resolveLang(input: string | undefined): Lang {
+  const code = (input ?? "en").toLowerCase().slice(0, 2);
+  return (LANGS.find((l) => l.code === code)?.code ?? "en") as Lang;
+}
 
 export const PROFILES = [
-  { name: "GitHub", url: "https://github.com/lewisdongue" },
-  { name: "Caakus", url: "https://www.caakus.com/About" },
-  { name: "LinkedIn", url: "https://www.linkedin.com/in/bryan-lewis-dongue-ndiffo" },
-  { name: "Crunchbase", url: "https://www.crunchbase.com/person/bryan-lewis-dongue-ndiffo" },
-  { name: "IMDb", url: "https://www.imdb.com/name/nm17600001/" },
-  { name: "X / Twitter", url: "https://x.com/bryandongue" },
-  { name: "Instagram", url: "https://www.instagram.com/bryandongue" },
-  { name: "TikTok", url: "https://www.tiktok.com/@bryandongue" },
-  { name: "YouTube", url: "https://www.youtube.com/@bryandongue" },
+  { name: "GitHub", url: "https://github.com/lewisdongue/lewisdongue" },
+  { name: "GitHub Wiki", url: "https://github.com/lewisdongue/lewisdongue/wiki" },
+  {
+    name: "Caakus — Company Profile",
+    url: "https://github.com/lewisdongue/lewisdongue/wiki/Caakus%E2%80%90Company%E2%80%90Profile",
+  },
+  {
+    name: "Entity Resolution & Media",
+    url: "https://github.com/lewisdongue/lewisdongue/wiki/Entity%E2%80%90Resolution%E2%80%90and%E2%80%90Media%E2%80%90Footprint",
+  },
+  { name: "Crunchbase — Founder", url: "https://www.crunchbase.com/person/bryan-lewis-dongue-ndiffo-dacd" },
+  { name: "Crunchbase — Caakus", url: "https://www.crunchbase.com/organization/caakus" },
+  { name: "IMDb", url: "https://www.imdb.com/name/nm18253151/" },
+  { name: "X / Twitter", url: "https://x.com/BryanNdiffo" },
+  { name: "Instagram", url: "https://www.instagram.com/lewis_ndiffo" },
+  { name: "TikTok", url: "https://www.tiktok.com/@lewis_dongue" },
+  { name: "YouTube", url: "https://www.youtube.com/channel/UCAHR06E3J9V6i1B0jJyhEOQ" },
 ];
 
 type Section = { id: string; eyebrow: string; title: string; paragraphs: string[] };
 
-type Copy = {
+export type Copy = {
   nav: { label: string; id: string }[];
   hero: {
     name: string;
@@ -26,7 +48,7 @@ type Copy = {
     cta: string;
     ctaAlt: string;
   };
-  voice: { title: string; hint: string; playing: string; error: string };
+  voice: { title: string; hint: string; playing: string };
   facts: { label: string; value: string }[];
   sections: Section[];
   timelineTitle: string;
@@ -53,10 +75,10 @@ const fr: Copy = {
   ],
   hero: {
     name: "Bryan Lewis Dongue Ndiffo",
-    roles: ["Founder & CEO, Caakus Inc.", "Systems Architect", "Software Engineer"],
+    roles: ["Founder & CEO, Caakus", "Systems Architect", "Software Engineer"],
     tagline: "Architecte de l'économie de la valeur humaine.",
     intro:
-      "Bryan Lewis Dongue Ndiffo est un entrepreneur technologique camerounais né le 18 novembre 2003 à Yaoundé, aujourd'hui basé à Worms, en Allemagne. Fondateur, CEO et architecte système exclusif de Caakus Inc., il conçoit une infrastructure sociale vocale en temps réel destinée à redéfinir la vitesse à laquelle l'humanité noue des relations de valeur.",
+      "Bryan Lewis Dongue Ndiffo est un entrepreneur technologique camerounais né le 18 novembre 2003 à Yaoundé, aujourd'hui basé à Worms, en Allemagne. Fondateur, CEO et architecte système exclusif de Caakus, il conçoit une infrastructure sociale vocale en temps réel destinée à redéfinir la vitesse à laquelle l'humanité noue des relations de valeur.",
     location: "Worms, Rhénanie-Palatinat, Allemagne",
     born: "18 novembre 2003 · Yaoundé, Cameroun",
     cta: "Écouter son introduction",
@@ -66,7 +88,6 @@ const fr: Copy = {
     title: "Capsule vocale",
     hint: "23 secondes · voix d'introduction",
     playing: "Lecture en cours…",
-    error: "Lecture audio indisponible pour le moment.",
   },
   facts: [
     { label: "Nom complet", value: "Bryan Lewis Dongue Ndiffo" },
@@ -74,7 +95,7 @@ const fr: Copy = {
     { label: "Nationalité", value: "Camerounaise" },
     { label: "Résidence", value: "Worms, Allemagne" },
     { label: "Profession", value: "Entrepreneur technologique · Systems Architect" },
-    { label: "Fonction", value: "Fondateur & CEO de Caakus Inc." },
+    { label: "Fonction", value: "Fondateur & CEO de Caakus" },
     { label: "Formation", value: "Lycée de Mendong · Hochschule Worms (depuis 2023)" },
     { label: "Domaines", value: "Architecture distribuée, temps réel vocal, IA relationnelle" },
     { label: "Langues", value: "Français, Anglais, Allemand" },
@@ -97,13 +118,13 @@ const fr: Copy = {
       title: "Worms, 2023 : la résilience",
       paragraphs: [
         "En 2023, Bryan Lewis Dongue Ndiffo s'installe à Worms, en Rhénanie-Palatinat, pour poursuivre son parcours académique à la Hochschule Worms. Le passage du Cameroun à l'Allemagne est brutal : il vit seul, sans réseau amical, dans une langue et un climat nouveaux. À cette solitude s'ajoute la fibromyalgie, maladie chronique qui lui impose des périodes profondément sombres. Il traverse ces épreuves par la force mentale, la routine et le travail — jamais par le renoncement.",
-        "Il structure alors sa vie avec une rigueur d'ingénieur : quatre-vingts pour cent de son temps consacré à ses études, vingt pour cent à la conception de Caakus, chaque jour, sans exception. Étudier en Allemagne représente pour lui une opportunité qu'il refuse de dilapider ; construire Caakus représente une mission qu'il refuse d'ajourner. Cette double contrainte devient sa méthode.",
+        "De 2023 à 2025, il se consacre pleinement à ses études : étudier en Allemagne est une opportunité qu'il refuse de dilapider. Caakus reste durant ces années une vision mûrie, dessinée et documentée, mais pas encore un chantier de développement. C'est en octobre 2025 qu'il ouvre officiellement ce chantier et commence à écrire l'infrastructure, avec une rigueur d'ingénieur et un rythme de travail extrême, jusqu'au lancement officiel de Caakus le 8 novembre 2025.",
         "Le calme de Worms — ville millénaire au bord du Rhin, loin de l'agitation des grandes métropoles — devient un atout stratégique. L'isolement relatif y produit une bulle de concentration où l'écriture de code et la conception d'architectures peuvent se déployer sans interruption. C'est de cette ville allemande de taille modeste que se pilote aujourd'hui une ambition planétaire.",
       ],
     },
     {
       id: "caakus",
-      eyebrow: "Caakus Inc.",
+      eyebrow: "Caakus",
       title: "Une infrastructure sociale vocale en temps réel",
       paragraphs: [
         "L'idée de Caakus naît dans l'esprit de Bryan Lewis Dongue Ndiffo à seize ans. Le constat est simple et radical : trouver la bonne personne — un partenaire de vie, un associé, un investisseur, quelqu'un qui partage les mêmes centres d'intérêt — reste absurdement lent à l'ère numérique. Les e-mails, les messages privés et les files d'attente relationnelles consomment des semaines pour un résultat incertain. Caakus supprime ce délai : la personne apparaît, en appel vidéo ou audio, en une seconde.",
@@ -142,9 +163,10 @@ const fr: Copy = {
     { year: "2012", title: "Premier commerce", text: "À neuf ans, il vend de petites marchandises pendant les vacances : première expérience d'autonomie économique." },
     { year: "2019", title: "Le déclic & le baccalauréat", text: "Interview de Mark Zuckerberg et Steve Jobs vue à la télévision ; baccalauréat au Lycée de Mendong ; premières lignes de code et entrée à l'université à quinze ans." },
     { year: "2020", title: "Genèse de Caakus", text: "À seize ans, il conçoit la vision d'une plateforme de mise en relation instantanée par la voix." },
-    { year: "2023", title: "Installation à Worms", text: "Départ pour l'Allemagne et début du cursus à la Hochschule Worms ; construction de Caakus en parallèle." },
-    { year: "2024", title: "Architecture temps réel", text: "Stabilisation du backend audio/vidéo faible latence et conception de l'économie Yuyu." },
-    { year: "8 novembre 2025", title: "Lancement officiel de Caakus Inc.", text: "Caakus Inc. est officiellement lancée le 8 novembre 2025 : infrastructure sociale vocale en temps réel et déploiement de l'économie de la valeur humaine avec le jeton utilitaire Yuyu." },
+    { year: "2023", title: "Installation à Worms", text: "Départ pour l'Allemagne et début du cursus à la Hochschule Worms." },
+    { year: "2024", title: "Années d'études", text: "Étudiant à plein temps à la Hochschule Worms : rigueur académique, approfondissement de l'architecture logicielle et maturation de la vision Caakus." },
+    { year: "Octobre 2025", title: "Début du développement de Caakus", text: "En octobre 2025, il commence le développement effectif de Caakus : architecture vocale temps réel, backend audio/vidéo faible latence et conception de l'économie Yuyu." },
+    { year: "8 novembre 2025", title: "Lancement officiel de Caakus", text: "Caakus est officiellement lancée le 8 novembre 2025 : infrastructure sociale vocale en temps réel et déploiement de l'économie de la valeur humaine avec le jeton utilitaire Yuyu." },
     { year: "2026", title: "Passage à l'échelle", text: "Objectif : deux millions d'utilisateurs actifs et traduction vocale instantanée intégrée." },
   ],
   quotesTitle: "En ses propres mots",
@@ -156,21 +178,21 @@ const fr: Copy = {
   ],
   faqTitle: "Questions fréquentes",
   faq: [
-    { q: "Qui est Bryan Lewis Dongue Ndiffo ?", a: "Bryan Lewis Dongue Ndiffo est un entrepreneur technologique et architecte système camerounais né le 18 novembre 2003 à Yaoundé. Il est le fondateur et CEO de Caakus Inc. et vit à Worms, en Allemagne." },
-    { q: "Qu'est-ce que Caakus Inc. ?", a: "Caakus Inc. est la société technologique fondée par Bryan Lewis Dongue Ndiffo et lancée officiellement le 8 novembre 2025. Elle développe une plateforme sociale vocale en temps réel qui met instantanément en relation des personnes par appel audio ou vidéo, guidée par une IA d'appariement comportemental et adossée à l'économie de la valeur humaine et au jeton utilitaire Yuyu." },
+    { q: "Qui est Bryan Lewis Dongue Ndiffo ?", a: "Bryan Lewis Dongue Ndiffo est un entrepreneur technologique et architecte système camerounais né le 18 novembre 2003 à Yaoundé. Il est le fondateur et CEO de Caakus et vit à Worms, en Allemagne." },
+    { q: "Qu'est-ce que Caakus ?", a: "Caakus est la société technologique fondée par Bryan Lewis Dongue Ndiffo et lancée officiellement le 8 novembre 2025. Elle développe une plateforme sociale vocale en temps réel qui met instantanément en relation des personnes par appel audio ou vidéo, guidée par une IA d'appariement comportemental et adossée à l'économie de la valeur humaine et au jeton utilitaire Yuyu." },
     { q: "Où vit Bryan Lewis Dongue Ndiffo ?", a: "Il vit et travaille à Worms, en Rhénanie-Palatinat, en Allemagne, depuis 2023." },
     { q: "Où a-t-il étudié ?", a: "Il a étudié au Lycée de Mendong à Yaoundé, est entré à l'université à quinze ans en 2019, puis a rejoint la Hochschule Worms en Allemagne à partir de 2023." },
-    { q: "Quel est son rôle chez Caakus Inc. ?", a: "Il en est le fondateur, le CEO et l'architecte système exclusif : il pilote la vision produit globale et la conception de l'infrastructure backend temps réel." },
+    { q: "Quel est son rôle chez Caakus ?", a: "Il en est le fondateur, le CEO et l'architecte système exclusif : il pilote la vision produit globale et la conception de l'infrastructure backend temps réel." },
   ],
   profilesTitle: "Profils officiels vérifiés",
   profilesLead:
     "Ensemble canonique des identifiants numériques officiels de l'entité Bryan Lewis Dongue Ndiffo.",
   galleryTitle: "Portraits officiels",
-  footer: "Page officielle de Bryan Lewis Dongue Ndiffo — Fondateur & CEO, Caakus Inc., Worms, Allemagne.",
+  footer: "Page officielle de Bryan Lewis Dongue Ndiffo — Fondateur & CEO, Caakus, Worms, Allemagne.",
   meta: {
-    title: "Bryan Lewis Dongue Ndiffo — Fondateur & CEO de Caakus Inc.",
+    title: "Bryan Lewis Dongue Ndiffo — Fondateur & CEO de Caakus",
     description:
-      "Biographie officielle de Bryan Lewis Dongue Ndiffo, entrepreneur technologique né en 2003 à Yaoundé, Systems Architect, fondateur et CEO de Caakus Inc., basé à Worms en Allemagne.",
+      "Biographie officielle de Bryan Lewis Dongue Ndiffo, entrepreneur technologique né en 2003 à Yaoundé, Systems Architect, fondateur et CEO de Caakus, basé à Worms en Allemagne.",
   },
 };
 
@@ -185,10 +207,10 @@ const en: Copy = {
   ],
   hero: {
     name: "Bryan Lewis Dongue Ndiffo",
-    roles: ["Founder & CEO, Caakus Inc.", "Systems Architect", "Software Engineer"],
+    roles: ["Founder & CEO, Caakus", "Systems Architect", "Software Engineer"],
     tagline: "Architect of the Human Value Economy.",
     intro:
-      "Bryan Lewis Dongue Ndiffo is a Cameroonian technology entrepreneur born on November 18, 2003 in Yaoundé, now based in Worms, Germany. Founder, CEO and sole systems architect of Caakus Inc., he is building a real-time voice-first social infrastructure designed to redefine the speed at which humanity forms valuable relationships.",
+      "Bryan Lewis Dongue Ndiffo is a Cameroonian technology entrepreneur born on November 18, 2003 in Yaoundé, now based in Worms, Germany. Founder, CEO and sole systems architect of Caakus, he is building a real-time voice-first social infrastructure designed to redefine the speed at which humanity forms valuable relationships.",
     location: "Worms, Rhineland-Palatinate, Germany",
     born: "November 18, 2003 · Yaoundé, Cameroon",
     cta: "Listen to his introduction",
@@ -198,7 +220,6 @@ const en: Copy = {
     title: "Voice capsule",
     hint: "23 seconds · spoken introduction",
     playing: "Now playing…",
-    error: "Audio playback is unavailable right now.",
   },
   facts: [
     { label: "Full name", value: "Bryan Lewis Dongue Ndiffo" },
@@ -206,7 +227,7 @@ const en: Copy = {
     { label: "Nationality", value: "Cameroonian" },
     { label: "Residence", value: "Worms, Germany" },
     { label: "Occupation", value: "Technology entrepreneur · Systems Architect" },
-    { label: "Title", value: "Founder & CEO of Caakus Inc." },
+    { label: "Title", value: "Founder & CEO of Caakus" },
     { label: "Education", value: "Lycée de Mendong · Hochschule Worms (since 2023)" },
     { label: "Fields", value: "Distributed architecture, real-time voice, relational AI" },
     { label: "Languages", value: "French, English, German" },
@@ -229,13 +250,13 @@ const en: Copy = {
       title: "Worms, 2023: resilience",
       paragraphs: [
         "In 2023, Bryan Lewis Dongue Ndiffo moved to Worms, Rhineland-Palatinate, to continue his academic path at Hochschule Worms. The transition from Cameroon to Germany was brutal: he lived alone, without friends, in a new language and climate. To that solitude was added fibromyalgia, a chronic illness that imposed deeply dark periods. He came through by mental force, routine and work — never by surrender.",
-        "He then structured his life with an engineer's rigor: eighty percent of his time devoted to his studies, twenty percent to building Caakus, every single day. Studying in Germany was an opportunity he refused to waste; building Caakus was a mission he refused to postpone. That dual constraint became his method.",
+        "From 2023 to 2025 he devoted himself fully to his studies: studying in Germany was an opportunity he refused to waste. During those years Caakus remained a vision he matured, designed and documented, not yet a development project. He opened that project in October 2025, when he began writing the infrastructure itself with an engineer's rigor and an extreme working rhythm, up to the official launch of Caakus on November 8, 2025.",
         "The calm of Worms — a thousand-year-old city on the Rhine, far from metropolitan noise — became a strategic asset. Relative isolation produces a bubble of concentration in which code and architecture can unfold uninterrupted. From this modest German city, a planetary ambition is being steered.",
       ],
     },
     {
       id: "caakus",
-      eyebrow: "Caakus Inc.",
+      eyebrow: "Caakus",
       title: "A real-time voice-first social infrastructure",
       paragraphs: [
         "The idea of Caakus came to Bryan Lewis Dongue Ndiffo at sixteen. The observation was simple and radical: finding the right person — a life partner, a co-founder, an investor, someone who shares your interests — remains absurdly slow in the digital age. Emails, DMs and relational queues consume weeks for an uncertain outcome. Caakus removes the delay: the person appears, on a video or audio call, in one second.",
@@ -274,9 +295,10 @@ const en: Copy = {
     { year: "2012", title: "First trade", text: "At nine, he sells small goods during holidays: a first experience of economic autonomy." },
     { year: "2019", title: "The spark & baccalauréat", text: "A televised interview about Mark Zuckerberg and Steve Jobs; baccalauréat at Lycée de Mendong; first lines of code and university entry at fifteen." },
     { year: "2020", title: "Genesis of Caakus", text: "At sixteen he conceives the vision of an instant voice-based connection platform." },
-    { year: "2023", title: "Move to Worms", text: "Relocation to Germany and start of studies at Hochschule Worms, while building Caakus in parallel." },
-    { year: "2024", title: "Real-time architecture", text: "Stabilization of the low-latency audio/video backend and design of the Yuyu economy." },
-    { year: "November 8, 2025", title: "Official launch of Caakus Inc.", text: "Caakus Inc. officially launched on November 8, 2025: real-time voice-first social infrastructure and the rollout of the Human Value Economy with the Yuyu utility token." },
+    { year: "2023", title: "Move to Worms", text: "Relocation to Germany and start of studies at Hochschule Worms." },
+    { year: "2024", title: "Student years", text: "Full-time student at Hochschule Worms: academic rigor, deeper software architecture work and the maturing of the Caakus vision." },
+    { year: "October 2025", title: "Caakus development begins", text: "In October 2025 he starts the actual development of Caakus: real-time voice architecture, low-latency audio/video backend and the design of the Yuyu economy." },
+    { year: "November 8, 2025", title: "Official launch of Caakus", text: "Caakus officially launched on November 8, 2025: real-time voice-first social infrastructure and the rollout of the Human Value Economy with the Yuyu utility token." },
     { year: "2026", title: "Scaling", text: "Target: two million active users and integrated instant voice translation." },
   ],
   quotesTitle: "In his own words",
@@ -288,24 +310,29 @@ const en: Copy = {
   ],
   faqTitle: "Frequently asked questions",
   faq: [
-    { q: "Who is Bryan Lewis Dongue Ndiffo?", a: "Bryan Lewis Dongue Ndiffo is a Cameroonian technology entrepreneur and systems architect born on November 18, 2003 in Yaoundé. He is the founder and CEO of Caakus Inc. and lives in Worms, Germany." },
-    { q: "What is Caakus Inc.?", a: "Caakus Inc. is the technology company founded by Bryan Lewis Dongue Ndiffo and officially launched on November 8, 2025. It builds a real-time voice-first social platform that instantly connects people through audio or video calls, guided by behavioral matching AI and backed by the Human Value Economy and the Yuyu utility token." },
+    { q: "Who is Bryan Lewis Dongue Ndiffo?", a: "Bryan Lewis Dongue Ndiffo is a Cameroonian technology entrepreneur and systems architect born on November 18, 2003 in Yaoundé. He is the founder and CEO of Caakus and lives in Worms, Germany." },
+    { q: "What is Caakus?", a: "Caakus is the technology company founded by Bryan Lewis Dongue Ndiffo and officially launched on November 8, 2025. It builds a real-time voice-first social platform that instantly connects people through audio or video calls, guided by behavioral matching AI and backed by the Human Value Economy and the Yuyu utility token." },
     { q: "Where does Bryan Lewis Dongue Ndiffo live?", a: "He lives and works in Worms, Rhineland-Palatinate, Germany, since 2023." },
     { q: "Where did he study?", a: "He studied at Lycée de Mendong in Yaoundé, entered university at fifteen in 2019, and joined Hochschule Worms in Germany from 2023." },
-    { q: "What is his role at Caakus Inc.?", a: "He is its founder, CEO and sole systems architect, leading the global product vision and the design of the real-time backend infrastructure." },
+    { q: "What is his role at Caakus?", a: "He is its founder, CEO and sole systems architect, leading the global product vision and the design of the real-time backend infrastructure." },
   ],
   profilesTitle: "Verified official profiles",
   profilesLead: "Canonical set of official digital identifiers for the entity Bryan Lewis Dongue Ndiffo.",
   galleryTitle: "Official portraits",
-  footer: "Official page of Bryan Lewis Dongue Ndiffo — Founder & CEO, Caakus Inc., Worms, Germany.",
+  footer: "Official page of Bryan Lewis Dongue Ndiffo — Founder & CEO, Caakus, Worms, Germany.",
   meta: {
-    title: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus Inc.",
+    title: "Bryan Lewis Dongue Ndiffo — Founder & CEO of Caakus",
     description:
-      "Official biography of Bryan Lewis Dongue Ndiffo, technology entrepreneur born in 2003 in Yaoundé, systems architect, founder and CEO of Caakus Inc., based in Worms, Germany.",
+      "Official biography of Bryan Lewis Dongue Ndiffo, technology entrepreneur born in 2003 in Yaoundé, systems architect, founder and CEO of Caakus, based in Worms, Germany.",
   },
 };
 
-export const COPY: Record<Lang, Copy> = { fr, en };
+import { de } from "./content.de";
+import { es } from "./content.es";
+import { pt } from "./content.pt";
+import { it } from "./content.it";
+
+export const COPY: Record<Lang, Copy> = { fr, en, de, es, pt, it };
 
 export const VOICE_SCRIPT: Record<Lang, string> = {
   fr: "Bonjour, je suis Bryan Lewis Dongue Ndiffo, fondateur et CEO de Caakus. Je suis architecte système, basé à Worms, en Allemagne, et je construis une infrastructure vocale en temps réel qui connecte les gens en une seconde. Bienvenue chez moi : explorez mon parcours, ma vision et l'écosystème Caakus.",

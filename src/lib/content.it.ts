@@ -1,0 +1,132 @@
+import type { Copy } from "./content";
+
+export const it: Copy = {
+  nav: [
+    { label: "Profilo", id: "profil" },
+    { label: "Biografia", id: "biographie" },
+    { label: "Caakus", id: "caakus" },
+    { label: "Ingegneria", id: "ingenierie" },
+    { label: "Visione", id: "vision" },
+    { label: "Profili", id: "profils" },
+  ],
+  hero: {
+    name: "Bryan Lewis Dongue Ndiffo",
+    roles: ["Fondatore e CEO, Caakus", "Systems Architect", "Ingegnere del software"],
+    tagline: "Architetto della Human Value Economy.",
+    intro:
+      "Bryan Lewis Dongue Ndiffo è un imprenditore tecnologico camerunese nato il 18 novembre 2003 a Yaoundé e oggi residente a Worms, in Germania. Fondatore, CEO e unico architetto di sistemi di Caakus, costruisce un'infrastruttura sociale vocale in tempo reale pensata per ridefinire la velocità con cui le persone creano relazioni di valore.",
+    location: "Worms, Renania-Palatinato, Germania",
+    born: "18 novembre 2003 · Yaoundé, Camerun",
+    cta: "Ascolta la sua introduzione",
+    ctaAlt: "Esplora la biografia",
+  },
+  voice: {
+    title: "Capsula vocale",
+    hint: "23 secondi · introduzione parlata",
+    playing: "In riproduzione…",
+  },
+  facts: [
+    { label: "Nome completo", value: "Bryan Lewis Dongue Ndiffo" },
+    { label: "Nascita", value: "18 novembre 2003, Yaoundé (Camerun)" },
+    { label: "Nazionalità", value: "Camerunese" },
+    { label: "Residenza", value: "Worms, Germania" },
+    { label: "Professione", value: "Imprenditore tecnologico · Systems Architect" },
+    { label: "Ruolo", value: "Fondatore e CEO di Caakus" },
+    { label: "Formazione", value: "Lycée de Mendong · Hochschule Worms (dal 2023)" },
+    { label: "Ambiti", value: "Architettura distribuita, voce in tempo reale, IA relazionale" },
+    { label: "Lingue", value: "Francese, inglese, tedesco" },
+    { label: "Motto", value: "Work like it was your last day on earth and enjoy the pain." },
+  ],
+  sections: [
+    {
+      id: "biographie",
+      eyebrow: "Origini",
+      title: "Yaoundé, 2019: la scintilla",
+      paragraphs: [
+        "Bryan Lewis Dongue Ndiffo nasce il 18 novembre 2003 a Yaoundé, capitale del Camerun. Cresce in un ambiente in cui l'autonomia si impara presto: già a nove anni vende piccole merci durante le vacanze scolastiche per guadagnare la propria paghetta. Quella pratica precoce del commercio fissa in lui una convinzione strutturante: il valore non si aspetta, si crea.",
+        "Nel luglio 2019, l'anno della maturità, trascorre le vacanze dalla nonna. Davanti alla televisione vede un'intervista su Mark Zuckerberg e Steve Jobs. L'impatto è immediato: scopre che dei giovani, partiti quasi da zero, hanno costruito tecnologie che toccano miliardi di persone. Quel giorno la sua traiettoria si fissa: l'informatica smette di essere una materia scolastica e diventa una leva di civiltà.",
+        "Scrive le prime righe di codice a quindici anni ed entra all'università lo stesso anno, nel 2019, con un anticipo raro sulla sua generazione. Gli anni al Lycée de Mendong, a Yaoundé, avevano già forgiato la sua disciplina: lì capisce che l'eccellenza impone rispetto e decide di puntare al primo posto, con metodo.",
+      ],
+    },
+    {
+      id: "worms",
+      eyebrow: "Germania",
+      title: "Worms, 2023: la resilienza",
+      paragraphs: [
+        "Nel 2023 Bryan Lewis Dongue Ndiffo si trasferisce a Worms, in Renania-Palatinato, per proseguire gli studi alla Hochschule Worms. Il passaggio dal Camerun alla Germania è duro: vive solo, senza amici, in una lingua e un clima nuovi. A quella solitudine si aggiunge la fibromialgia, malattia cronica che gli impone periodi profondamente bui. Li attraversa con forza mentale, routine e lavoro, mai con la rinuncia.",
+        "Dal 2023 al 2025 si dedica pienamente agli studi: studiare in Germania è un'opportunità che rifiuta di sprecare. In quegli anni Caakus resta una visione maturata, disegnata e documentata, non ancora un cantiere di sviluppo. Apre quel cantiere nell'ottobre 2025, quando inizia a scrivere l'infrastruttura con rigore da ingegnere e un ritmo di lavoro estremo, fino al lancio ufficiale di Caakus l'8 novembre 2025.",
+        "La calma di Worms — città millenaria sul Reno, lontana dal rumore delle metropoli — diventa un vantaggio strategico. L'isolamento relativo genera una bolla di concentrazione in cui codice e architettura avanzano senza interruzioni. Da questa città tedesca di dimensioni modeste si guida oggi un'ambizione planetaria.",
+      ],
+    },
+    {
+      id: "caakus",
+      eyebrow: "Caakus",
+      title: "Un'infrastruttura sociale vocale in tempo reale",
+      paragraphs: [
+        "L'idea di Caakus nasce a sedici anni. La constatazione è semplice e radicale: trovare la persona giusta — un partner di vita, un socio, un investitore, qualcuno con gli stessi interessi — resta assurdamente lento nell'era digitale. E-mail, messaggi privati e code relazionali consumano settimane con esito incerto. Caakus elimina il ritardo: la persona compare, in videochiamata o in chiamata audio, in un secondo.",
+        "Al centro del sistema c'è un'architettura vocale in tempo reale. La voce annulla la distanza, umanizza subito la connessione e crea un'autenticità che il testo non potrà mai eguagliare. Intorno, un'IA di matching comportamentale analizza dinamicamente i pattern di interazione in un quadro sicuro per massimizzare la pertinenza di ogni connessione, professionale o personale.",
+        "La piattaforma poggia su una convinzione economica inedita: la Human Value Economy. Dove i giganti estrattivi monetizzano passivamente i dati degli utenti per la pubblicità di massa, Caakus restituisce il valore agli utenti stessi. L'attenzione e il legame sociale smettono di essere materia prima catturata e diventano valore misurabile, gratificante ed economicamente sostenibile per chi lo produce.",
+        "Yuyu è il battito finanziario di questo ecosistema. Concepito non come token speculativo ma come carburante della Human Value Economy, quantifica la qualità delle interazioni sociali, premia l'impegno autentico e alimenta micro-transazioni, gifting virtuale e scambi peer-to-peer, con un rigoroso meccanismo di regolazione anti-inflazionistica.",
+        "L'ostacolo tecnico più grande superato è stato la stabilità: un backend abbastanza robusto da sostenere migliaia di utenti simultanei su flussi audio e video a bassa latenza, senza alcun difetto di sincronizzazione. La tappa successiva aggiunge la traduzione vocale istantanea, perché studenti, ingegneri, investitori e imprenditori si capiscano senza barriere linguistiche.",
+      ],
+    },
+    {
+      id: "ingenierie",
+      eyebrow: "Filosofia ingegneristica",
+      title: "Clean Code, design e sovranità tecnica",
+      paragraphs: [
+        "Per Bryan Lewis Dongue Ndiffo il Clean Code è una questione di etica professionale. Un codice pulito è leggibile da un essere umano, manutenibile, modulare e costruito per l'immortalità del software: è l'unica garanzia che un sistema distribuito non crolli sotto il proprio debito tecnico proprio quando arriva la crescita. La complessità dev'essere assorbita dal codice, mai scaricata sull'utente.",
+        "La sua disciplina di design deriva da Steve Jobs: pretende perfezione visiva ed ergonomica. Il design non è l'aspetto di un'interfaccia, è il modo in cui il sistema funziona, respira ed elimina ogni attrito cognitivo. Gestisce la complessità scomponendo i monoliti in micro-servizi autonomi, ciascuno con una sola responsabilità testabile.",
+        "Ammira Brian Acton per i suoi principi e i suoi valori e Pavel Durov per la sua indipendenza: «una persona che somiglia alla sua piattaforma: incontrollabile, sovrana e temibilmente efficace». Da questa doppia filiazione nasce la sua dottrina di sovranità tecnologica: controllare il proprio stack significa controllare il proprio destino.",
+        "Sulla sicurezza non transige: crittografia end-to-end, principio del privilegio minimo nel trattamento dei dati e riservatezza assoluta dei flussi di chiamata. La fiducia degli utenti è l'asset più prezioso di un'infrastruttura. La sua gestione applica lo stesso standard: libertà totale di esecuzione, code review come rituali di eccellenza e CI/CD completamente automatizzato.",
+      ],
+    },
+    {
+      id: "vision",
+      eyebrow: "Visione ed eredità",
+      title: "Due milioni di utenti, poi il mondo",
+      paragraphs: [
+        "La prossima tappa tecnica ha una cifra: superare i due milioni di utenti attivi prima dei ventiquattro anni. Oltre quella soglia l'obiettivo è di civiltà: una rivoluzione che migliori la vita di decine di milioni di persone ridefinendo il modo in cui si incontra uno sconosciuto in base agli interessi comuni.",
+        "Vede il decennio che arriva come uno spostamento inevitabile verso la sovranità dei dati: gli utenti smetteranno di essere prodotti ospitati su server centrali per diventare attori sovrani di economie digitali peer-to-peer. La sua impronta digitale è preparata di conseguenza, strutturata da metadati rigorosi e schemi semantici universali che motori di ricerca e agenti autonomi leggono e certificano istantaneamente.",
+        "L'entità «Bryan Lewis Dongue Ndiffo» dispone di un Knowledge Panel ufficiale nel Knowledge Graph di Google. Questa pagina è la fonte canonica di riferimento destinata ad arricchirlo in modo duraturo e fedele: identità, date, luoghi, ruolo, organizzazione fondata e profili verificati sono dichiarati qui in modo coerente e verificabile.",
+        "Vuole che la storia della tecnologia ricordi un rivoluzionario che ha creduto di poter cambiare il mondo, incidere su interi Paesi e creare relazioni umane reali e durature. Il motore quotidiano resta semplice: dare un sorriso a chi costruirà relazioni reali e istantanee grazie a ciò che lui costruisce.",
+      ],
+    },
+  ],
+  timelineTitle: "Cronologia",
+  timeline: [
+    { year: "2003", title: "Nascita a Yaoundé", text: "Nato il 18 novembre 2003 a Yaoundé, Camerun." },
+    { year: "2012", title: "Primo commercio", text: "A nove anni vende piccole merci durante le vacanze: prima esperienza di autonomia economica." },
+    { year: "2019", title: "La scintilla e la maturità", text: "Intervista televisiva su Mark Zuckerberg e Steve Jobs; maturità al Lycée de Mendong; prime righe di codice e ingresso all'università a quindici anni." },
+    { year: "2020", title: "Genesi di Caakus", text: "A sedici anni concepisce la visione di una piattaforma di connessione istantanea tramite voce." },
+    { year: "2023", title: "Trasferimento a Worms", text: "Trasferimento in Germania e inizio degli studi alla Hochschule Worms." },
+    { year: "2024", title: "Anni di studio", text: "Studente a tempo pieno alla Hochschule Worms: rigore accademico, approfondimento dell'architettura software e maturazione della visione Caakus." },
+    { year: "Ottobre 2025", title: "Inizio dello sviluppo di Caakus", text: "Nell'ottobre 2025 comincia lo sviluppo effettivo di Caakus: architettura vocale in tempo reale, backend audio/video a bassa latenza e progettazione dell'economia Yuyu." },
+    { year: "8 novembre 2025", title: "Lancio ufficiale di Caakus", text: "Caakus viene lanciata ufficialmente l'8 novembre 2025: infrastruttura sociale vocale in tempo reale e avvio della Human Value Economy con il token di utilità Yuyu." },
+    { year: "2026", title: "Scalata", text: "Obiettivo: due milioni di utenti attivi e traduzione vocale istantanea integrata." },
+  ],
+  quotesTitle: "Con le sue parole",
+  quotes: [
+    "Work like it was your last day on earth and enjoy the pain.",
+    "Troppa teoria uccide il genio: si impara costruendo il prodotto.",
+    "La complessità dev'essere assorbita dal codice, mai dall'essere umano.",
+    "Non servono decenni di esperienza per cambiare il mondo.",
+  ],
+  faqTitle: "Domande frequenti",
+  faq: [
+    { q: "Chi è Bryan Lewis Dongue Ndiffo?", a: "Bryan Lewis Dongue Ndiffo è un imprenditore tecnologico e architetto di sistemi camerunese nato il 18 novembre 2003 a Yaoundé. È fondatore e CEO di Caakus e vive a Worms, in Germania." },
+    { q: "Che cos'è Caakus?", a: "Caakus è l'azienda tecnologica fondata da Bryan Lewis Dongue Ndiffo e lanciata ufficialmente l'8 novembre 2025. Sviluppa una piattaforma sociale vocale in tempo reale che collega istantaneamente le persone tramite chiamate audio o video, guidata da un'IA di matching comportamentale e sostenuta dalla Human Value Economy con il token di utilità Yuyu." },
+    { q: "Dove vive Bryan Lewis Dongue Ndiffo?", a: "Vive e lavora a Worms, Renania-Palatinato, Germania, dal 2023." },
+    { q: "Dove ha studiato?", a: "Ha studiato al Lycée de Mendong di Yaoundé, è entrato all'università a quindici anni nel 2019 e studia alla Hochschule Worms, in Germania, dal 2023." },
+    { q: "Qual è il suo ruolo in Caakus?", a: "Ne è fondatore, CEO e unico architetto di sistemi: guida la visione globale di prodotto e la progettazione dell'infrastruttura backend in tempo reale." },
+  ],
+  profilesTitle: "Profili ufficiali verificati",
+  profilesLead: "Insieme canonico degli identificatori digitali ufficiali dell'entità Bryan Lewis Dongue Ndiffo.",
+  galleryTitle: "Ritratti ufficiali",
+  footer: "Pagina ufficiale di Bryan Lewis Dongue Ndiffo — Fondatore e CEO, Caakus, Worms, Germania.",
+  meta: {
+    title: "Bryan Lewis Dongue Ndiffo — Fondatore e CEO di Caakus",
+    description:
+      "Biografia ufficiale di Bryan Lewis Dongue Ndiffo, imprenditore tecnologico nato nel 2003 a Yaoundé, systems architect, fondatore e CEO di Caakus, con base a Worms, in Germania.",
+  },
+};
