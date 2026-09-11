@@ -559,6 +559,19 @@ function Home() {
             </a>
           ))}
         </div>
+
+        <div className="mt-12 flex flex-col items-start gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 className="text-xl">{portfolio.title}</h3>
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground">{portfolio.subtitle}</p>
+          </div>
+          <Link
+            to="/portfolio"
+            className="inline-flex h-12 shrink-0 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            {portfolio.title} ↗
+          </Link>
+        </div>
       </section>
 
       <footer className="border-t border-border px-5 py-10 text-center text-xs text-muted-foreground">
