@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { COPY, LANGS, PROFILES, resolveLang, type Lang } from "@/lib/content";
 import { PORTFOLIO_COPY } from "@/lib/portfolio-content";
@@ -276,11 +276,6 @@ function Home() {
 
   const t = COPY[lang];
   const portfolio = PORTFOLIO_COPY[lang];
-  const navigation = [
-    ...t.nav.slice(0, -1),
-    { label: portfolio.navLabel, id: "portfolio" },
-    ...t.nav.slice(-1),
-  ];
 
   const play = async (auto = false) => {
     if (auto && !canAutoplay()) return;
@@ -352,7 +347,7 @@ function Home() {
             Bryan Lewis Dongue Ndiffo
           </span>
           <nav className="hidden items-center gap-6 text-xs uppercase tracking-[0.18em] text-muted-foreground lg:flex">
-            {navigation.map((n) => (
+            {t.nav.map((n) => (
               <a key={n.id} href={`#${n.id}`} className="transition-colors hover:text-primary">
                 {n.label}
               </a>
