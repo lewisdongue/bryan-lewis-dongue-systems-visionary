@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ApiPublicIntroVoiceRouteImport } from './routes/api/public/intro-voice'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicIntroVoiceRoute = ApiPublicIntroVoiceRouteImport.update({
@@ -25,27 +31,31 @@ const ApiPublicIntroVoiceRoute = ApiPublicIntroVoiceRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/portfolio': typeof PortfolioRoute
   '/api/public/intro-voice': typeof ApiPublicIntroVoiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/portfolio': typeof PortfolioRoute
   '/api/public/intro-voice': typeof ApiPublicIntroVoiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/portfolio': typeof PortfolioRoute
   '/api/public/intro-voice': typeof ApiPublicIntroVoiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/public/intro-voice'
+  fullPaths: '/' | '/portfolio' | '/api/public/intro-voice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/public/intro-voice'
-  id: '__root__' | '/' | '/api/public/intro-voice'
+  to: '/' | '/portfolio' | '/api/public/intro-voice'
+  id: '__root__' | '/' | '/portfolio' | '/api/public/intro-voice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PortfolioRoute: typeof PortfolioRoute
   ApiPublicIntroVoiceRoute: typeof ApiPublicIntroVoiceRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/intro-voice': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PortfolioRoute: PortfolioRoute,
   ApiPublicIntroVoiceRoute: ApiPublicIntroVoiceRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,11 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { COPY, LANGS, PROFILES, resolveLang, type Lang } from "@/lib/content";
 import { PORTFOLIO_COPY } from "@/lib/portfolio-content";
-import { Button } from "@/components/ui/button";
-import { Braces, Check, CloudCog, Code2, Database, GitBranch, Layers3, Radio, ServerCog } from "lucide-react";
-import caakusLogo from "@/assets/caakus-logo.jpg.asset.json";
-import dadaduLogo from "@/assets/dadadu-logo.jpg.asset.json";
 import ceo from "@/assets/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg";
 import founder from "@/assets/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg";
 import architect from "@/assets/bryan-lewis-dongue-systems-architect-tech.jpg";
@@ -280,12 +276,6 @@ function Home() {
 
   const t = COPY[lang];
   const portfolio = PORTFOLIO_COPY[lang];
-  const portfolioLogos = [caakusLogo.url, dadaduLogo.url];
-  const navigation = [
-    ...t.nav.slice(0, -1),
-    { label: portfolio.navLabel, id: "portfolio" },
-    ...t.nav.slice(-1),
-  ];
 
   const play = async (auto = false) => {
     if (auto && !canAutoplay()) return;
@@ -357,7 +347,7 @@ function Home() {
             Bryan Lewis Dongue Ndiffo
           </span>
           <nav className="hidden items-center gap-6 text-xs uppercase tracking-[0.18em] text-muted-foreground lg:flex">
-            {navigation.map((n) => (
+            {t.nav.map((n) => (
               <a key={n.id} href={`#${n.id}`} className="transition-colors hover:text-primary">
                 {n.label}
               </a>
@@ -486,113 +476,6 @@ function Home() {
         );
       })}
 
-      {/* Engineering portfolio */}
-      <section id="portfolio" className="border-y border-border bg-card/35 py-20 sm:py-24">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="max-w-3xl">
-            <p className="eyebrow">{portfolio.eyebrow}</p>
-            <h2 className="mt-3 text-4xl sm:text-5xl">{portfolio.title}</h2>
-            <p className="mt-5 text-base leading-7 text-muted-foreground sm:text-lg">
-              {portfolio.subtitle}
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            {portfolio.projects.map((project, projectIndex) => (
-              <article key={project.name} className="elite-card flex h-full flex-col rounded-lg p-6 sm:p-8">
-                <header className="flex items-center gap-4 border-b border-border pb-6">
-                  <img
-                    src={portfolioLogos[projectIndex]}
-                    alt={`${project.name} application logo`}
-                    title={`${project.name} official application logo`}
-                    className="h-16 w-16 shrink-0 rounded-lg border border-border object-cover"
-                    width={64}
-                    height={64}
-                    loading="lazy"
-                  />
-                  <div className="min-w-0">
-                    <h3 className="text-3xl">{project.name}</h3>
-                    <p className="mt-1 text-xs font-medium uppercase leading-5 tracking-[0.14em] text-primary">
-                      {project.category}
-                    </p>
-                  </div>
-                </header>
-
-                <div className="mt-7 flex-1 space-y-7">
-                  <div>
-                    <h4 className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                      <Layers3 className="h-4 w-4 text-primary" aria-hidden="true" />
-                      {portfolio.labels.concept}
-                    </h4>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{project.concept}</p>
-                  </div>
-                  <div>
-                    <h4 className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                      <ServerCog className="h-4 w-4 text-primary" aria-hidden="true" />
-                      {portfolio.labels.challenge}
-                    </h4>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{project.challenge}</p>
-                  </div>
-                  <div>
-                    <h4 className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                      <Code2 className="h-4 w-4 text-primary" aria-hidden="true" />
-                      {portfolio.labels.achievements}
-                    </h4>
-                    <ul className="mt-3 space-y-3">
-                      {project.achievements.map((achievement) => (
-                        <li key={achievement} className="flex gap-3 text-sm leading-6 text-muted-foreground">
-                          <Check className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                      <Database className="h-4 w-4 text-primary" aria-hidden="true" />
-                      {portfolio.labels.stack}
-                    </h4>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {project.stack.map((technology) => (
-                        <span key={technology} className="rounded-md border border-border bg-secondary px-3 py-1.5 text-xs text-secondary-foreground">
-                          {technology}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-col gap-7 border-t border-border pt-8 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="flex items-center gap-3">
-                <Braces className="h-5 w-5 text-primary" aria-hidden="true" />
-                <h3 className="text-2xl">{portfolio.practicesTitle}</h3>
-              </div>
-              <p className="mt-2 text-sm text-muted-foreground">{portfolio.practicesLead}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {[
-                  ["Clean Code", Code2],
-                  ["CI/CD", CloudCog],
-                  ["Git Flow", GitBranch],
-                  ["API Design", Radio],
-                ].map(([practice, Icon]) => (
-                  <span key={String(practice)} className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-xs font-medium">
-                    <Icon className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                    {String(practice)}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <Button asChild size="lg" className="h-12 shrink-0 px-6">
-              <a href="#profils">{portfolio.cta}</a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Timeline */}
       <section className="mx-auto max-w-4xl px-5 py-16">
         <h2 className="text-3xl sm:text-4xl">{t.timelineTitle}</h2>
@@ -670,6 +553,19 @@ function Home() {
               <span className="text-primary">↗</span>
             </a>
           ))}
+        </div>
+
+        <div className="mt-12 flex flex-col items-start gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 className="text-xl">{portfolio.title}</h3>
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground">{portfolio.subtitle}</p>
+          </div>
+          <Link
+            to="/portfolio"
+            className="inline-flex h-12 shrink-0 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            {portfolio.title} ↗
+          </Link>
         </div>
       </section>
 
