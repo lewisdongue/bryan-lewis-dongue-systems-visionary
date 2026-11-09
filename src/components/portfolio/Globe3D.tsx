@@ -76,15 +76,19 @@ export function Globe3D({ className }: { className?: string }) {
         return new THREE.Vector3(-r * Math.sin(phi) * Math.cos(theta), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(theta));
       };
 
-      // Inner sphere hides the dots on the far side
+      // Inner sphere with a soft rim light: hides far-side dots and gives depth
       const core = new THREE.Mesh(
-        new THREE.SphereGeometry(0.985, 48, 48),
-        new THREE.MeshBasicMaterial({ color: 0x0b1220, transparent: true, opacity: 0.92 }),
+        new THREE.SphereGeometry(0.985, 64, 64),
+        new THREE.ShaderMaterial({
+          transparent: true,
+          vertexShader: `varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+          fragmentShader: `varying vec3 vN; void main(){ float rim = 1.0 - max(dot(vN, vec3(0.0,0.0,1.0)), 0.0); vec3 base = vec3(0.05,0.08,0.16); vec3 lit = vec3(0.13,0.22,0.45); vec3 c = mix(base, lit, pow(rim, 2.2)) + vec3(0.04,0.06,0.12) * max(dot(vN, normalize(vec3(-0.5,0.6,0.6))), 0.0); gl_FragColor = vec4(c, 0.96); }`,
+        }),
       );
       globe.add(core);
 
       // Dotted surface (fibonacci sphere)
-      const count = isSmall ? 1400 : 2400;
+      const count = isSmall ? 1800 : 3200;
       const dotPos = new Float32Array(count * 3);
       const golden = Math.PI * (3 - Math.sqrt(5));
       for (let i = 0; i < count; i++) {
@@ -99,7 +103,7 @@ export function Globe3D({ className }: { className?: string }) {
       dotsGeo.setAttribute("position", new THREE.BufferAttribute(dotPos, 3));
       const dots = new THREE.Points(
         dotsGeo,
-        new THREE.PointsMaterial({ color: 0x7f93b8, size: 0.011, transparent: true, opacity: 0.75, sizeAttenuation: true }),
+        new THREE.PointsMaterial({ color: 0xb9cbef, size: 0.016, transparent: true, opacity: 0.9, sizeAttenuation: true }),
       );
       globe.add(dots);
 
@@ -113,7 +117,7 @@ export function Globe3D({ className }: { className?: string }) {
       cityGeo.setAttribute("position", new THREE.BufferAttribute(cityPos, 3));
       const cities = new THREE.Points(
         cityGeo,
-        new THREE.PointsMaterial({ color: 0xf2c46d, size: 0.045, transparent: true, opacity: 0.95, sizeAttenuation: true }),
+        new THREE.PointsMaterial({ color: 0xf2c46d, size: 0.06, transparent: true, opacity: 1, sizeAttenuation: true }),
       );
       globe.add(cities);
 
@@ -133,7 +137,7 @@ export function Globe3D({ className }: { className?: string }) {
 
       // Animated arcs (comet trails travelling between cities)
       const SEG = 90;
-      const TRAIL = 34;
+      const TRAIL = 48;
       const arcs = ARCS.map(([a, b], i) => {
         const [la, lo] = CITIES[a] ?? [0, 0];
         const [lb, lob] = CITIES[b] ?? [0, 0];
@@ -155,11 +159,22 @@ export function Globe3D({ className }: { className?: string }) {
         // faint full path
         const ghost = new THREE.Line(
           geo.clone(),
-          new THREE.LineBasicMaterial({ color: 0x8aa0c8, transparent: true, opacity: 0.08 }),
+          new THREE.LineBasicMaterial({ color: 0x8aa0c8, transparent: true, opacity: 0.18 }),
         );
         globe.add(ghost);
-        return { geo, mat, ghost, offset: Math.random(), speed: 0.12 + Math.random() * 0.1 };
+        return { geo, mat, ghost, curve, offset: Math.random(), speed: 0.12 + Math.random() * 0.1 };
       });
+
+      // Bright heads travelling at the front of each arc
+      const headPos = new Float32Array(arcs.length * 3);
+      const headGeo = new THREE.BufferGeometry();
+      headGeo.setAttribute("position", new THREE.BufferAttribute(headPos, 3));
+      const heads = new THREE.Points(
+        headGeo,
+        new THREE.PointsMaterial({ color: 0xfff1c9, size: 0.055, transparent: true, opacity: 1, blending: THREE.AdditiveBlending, depthWrite: false }),
+      );
+      globe.add(heads);
+      const tmp = new THREE.Vector3();
 
       // Sizing
       const resize = () => {
@@ -205,13 +220,19 @@ export function Globe3D({ className }: { className?: string }) {
         globe.rotation.y = spin + targetY * 0.6;
         globe.rotation.x += (0.32 + targetX - globe.rotation.x) * 0.05;
         const time = now / 1000;
-        for (const arc of arcs) {
+        arcs.forEach((arc, i) => {
           const p = (time * arc.speed + arc.offset) % 1.35;
           const head = Math.floor(p * SEG);
           const startIdx = Math.max(0, head - TRAIL);
           const end = Math.min(SEG + 1, head);
           arc.geo.setDrawRange(startIdx, Math.max(0, end - startIdx));
-        }
+          if (p <= 1) arc.curve.getPoint(p, tmp);
+          else tmp.set(0, 0, 0);
+          headPos[i * 3] = tmp.x;
+          headPos[i * 3 + 1] = tmp.y;
+          headPos[i * 3 + 2] = tmp.z;
+        });
+        headGeo.attributes["position"]!.needsUpdate = true;
         renderer.render(scene, camera);
         if (visible && !document.hidden && !reduceMotion) raf = requestAnimationFrame(frame);
       };

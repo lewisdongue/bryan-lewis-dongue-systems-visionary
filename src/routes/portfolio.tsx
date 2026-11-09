@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { CountUp, Reveal, Tilt } from "@/components/portfolio/effects";
 import {
+  Activity,
   ArrowDown,
   Boxes,
   Braces,
@@ -24,6 +25,7 @@ import {
   Maximize2,
   Radio,
   ServerCog,
+  ShieldCheck,
   Store,
   Terminal,
 } from "lucide-react";
@@ -362,14 +364,22 @@ function PortfolioPage() {
                         </span>
                       ))}
                     </div>
-                    <div className="mt-8 flex items-center gap-3 rounded-xl border border-border bg-background/40 p-4">
-                      <Globe2 className="h-8 w-8 shrink-0 text-accent" aria-hidden="true" />
-                      <p className="text-sm leading-6 text-muted-foreground">
-                        <span className="font-semibold text-foreground">
-                          <CountUp value={190} suffix="+" locale={locale} />
-                        </span>{" "}
-                        {t.stats[2].label}
-                      </p>
+                    <div className="mt-8 grid gap-3">
+                      {[
+                        { Icon: Globe2, value: <CountUp value={190} suffix="+" locale={locale} />, label: t.stats[2]?.label },
+                        { Icon: Activity, value: <CountUp value={1.8} decimals={1} suffix=" M" locale={locale} />, label: t.stats[1]?.label },
+                        { Icon: ShieldCheck, value: <>&lt; 1 s</>, label: t.moderationLabel },
+                      ].map(({ Icon, value, label }, i) => (
+                        <Tilt key={i} max={8} lift={10} className="flex items-center gap-4 rounded-xl border border-border bg-background/40 p-4">
+                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-accent/30 bg-accent/10">
+                            <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
+                          </span>
+                          <p className="min-w-0 text-sm leading-6 text-muted-foreground">
+                            <span className="block font-display text-2xl leading-tight text-foreground">{value}</span>
+                            {label}
+                          </p>
+                        </Tilt>
+                      ))}
                     </div>
                   </div>
                 </div>

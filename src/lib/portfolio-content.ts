@@ -38,6 +38,7 @@ export type PortfolioCopy = {
     captions: [string, string, string, string];
   };
   dadaduNote: string;
+  moderationLabel: string;
   practicesTitle: string;
   practicesLead: string;
   ctaTitle: string;
@@ -130,6 +131,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       ],
     },
     dadaduNote: "Was available on the App Store and Google Play for one year. No longer listed.",
+    moderationLabel: "AI moderation of live video",
     practicesTitle: "Development practices",
     practicesLead: "Disciplined engineering from architecture to deployment.",
     ctaTitle: "Let's build together.",
@@ -203,6 +205,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       ],
     },
     dadaduNote: "War ein Jahr lang im App Store und bei Google Play verfügbar. Heute nicht mehr gelistet.",
+    moderationLabel: "KI-Moderation von Live-Video",
     practicesTitle: "Entwicklungspraktiken",
     practicesLead: "Disziplinierte Softwareentwicklung von der Architektur bis zum Deployment.",
     ctaTitle: "Lassen Sie uns zusammen bauen.",
@@ -276,6 +279,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       ],
     },
     dadaduNote: "Disponible sur l’App Store et Google Play pendant un an. N’y figure plus aujourd’hui.",
+    moderationLabel: "modération IA de la vidéo en direct",
     practicesTitle: "Pratiques de développement",
     practicesLead: "Une ingénierie disciplinée, de l’architecture au déploiement.",
     ctaTitle: "Construisons ensemble.",
@@ -349,6 +353,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       ],
     },
     dadaduNote: "Estuvo disponible un año en App Store y Google Play. Ya no aparece en las tiendas.",
+    moderationLabel: "moderación IA del vídeo en directo",
     practicesTitle: "Prácticas de desarrollo",
     practicesLead: "Ingeniería disciplinada, desde la arquitectura hasta el despliegue.",
     ctaTitle: "Construyamos juntos.",
@@ -422,6 +427,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       ],
     },
     dadaduNote: "Esteve disponível durante um ano na App Store e no Google Play. Já não está listada.",
+    moderationLabel: "moderação IA do vídeo ao vivo",
     practicesTitle: "Práticas de desenvolvimento",
     practicesLead: "Engenharia disciplinada, da arquitetura ao deployment.",
     ctaTitle: "Vamos construir juntos.",
@@ -495,6 +501,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       ],
     },
     dadaduNote: "È stata disponibile per un anno su App Store e Google Play. Oggi non è più presente.",
+    moderationLabel: "moderazione IA del video live",
     practicesTitle: "Pratiche di sviluppo",
     practicesLead: "Ingegneria disciplinata, dall’architettura al deployment.",
     ctaTitle: "Costruiamo insieme.",
