@@ -80,11 +80,11 @@ export function Globe3D({ className }: { className?: string }) {
       const core = new THREE.Mesh(
         new THREE.SphereGeometry(0.985, 64, 64),
         new THREE.ShaderMaterial({
-          transparent: true,
           vertexShader: `varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
-          fragmentShader: `varying vec3 vN; void main(){ float rim = 1.0 - max(dot(vN, vec3(0.0,0.0,1.0)), 0.0); vec3 base = vec3(0.05,0.08,0.16); vec3 lit = vec3(0.13,0.22,0.45); vec3 c = mix(base, lit, pow(rim, 2.2)) + vec3(0.04,0.06,0.12) * max(dot(vN, normalize(vec3(-0.5,0.6,0.6))), 0.0); gl_FragColor = vec4(c, 0.96); }`,
+          fragmentShader: `varying vec3 vN; void main(){ float rim = 1.0 - max(dot(vN, vec3(0.0,0.0,1.0)), 0.0); vec3 base = vec3(0.05,0.08,0.16); vec3 lit = vec3(0.13,0.22,0.45); vec3 c = mix(base, lit, pow(rim, 2.2)) + vec3(0.04,0.06,0.12) * max(dot(vN, normalize(vec3(-0.5,0.6,0.6))), 0.0); gl_FragColor = vec4(c, 1.0); }`,
         }),
       );
+      core.renderOrder = -1;
       globe.add(core);
 
       // Dotted surface (fibonacci sphere)
