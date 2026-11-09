@@ -347,3 +347,25 @@
     transform: perspective(1400px) rotateX(6deg);
   }
 }
+
+/* Home: orbit ring around the portrait */
+.orbit-ring {
+  position: absolute;
+  inset: -8%;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent);
+  transform: perspective(900px) rotateX(72deg);
+  animation: orbit-spin 18s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+@keyframes orbit-spin {
+  to {
+    transform: perspective(900px) rotateX(72deg) rotateZ(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring {
+    animation: none;
+  }
+}
