@@ -26,7 +26,7 @@ export type PortfolioCopy = {
     linkedin: string;
     projects: string;
   };
-  /** Order: registered users, API requests/day, countries, Google clicks (7 days) */
+  /** Order: registered members, API requests (24 h peak), countries, live video calls */
   stats: [PortfolioStat, PortfolioStat, PortfolioStat, PortfolioStat];
   labels: { concept: string; challenge: string; achievements: string; stack: string };
   projects: [PortfolioProject, PortfolioProject];
@@ -70,7 +70,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
     eyebrow: "Selected engineering work",
     title: "Engineering Portfolio",
     subtitle:
-      "I build and run production software on my own: a real-time video platform used in more than 190 countries, and a cross-platform mobile app.",
+      "I build and run production software on my own: a real-time video platform used in more than 200 countries, and a cross-platform mobile app.",
     role: "Werkstudent · Software Development",
     availability: "Available now · Rhine-Main / Rhine-Neckar · Remote",
     buttons: {
@@ -82,10 +82,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       projects: "See the projects",
     },
     stats: [
-      { label: "registered users in two weeks" },
-      { label: "API requests per day" },
+      { label: "registered members in under three weeks" },
+      { label: "API requests in 24 hours (peak)" },
       { label: "countries with active users" },
-      { label: "Google clicks in 7 days" },
+      { label: "live video calls" },
     ],
     labels: { concept: "The concept", challenge: "The engineering challenge", achievements: "Key achievements", stack: "Technical stack" },
     projects: [
@@ -94,10 +94,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
         category: "Live product · Founder & sole developer",
         concept: "A real-time video communication web platform that connects people across the world instantly.",
         challenge:
-          "Running a near-zero-latency platform that handles secure random video connections at global scale, alone, while it grows by thousands of users per day.",
+          "Running a near-zero-latency platform that handles secure random video connections at global scale, alone, while it grows by thousands of users.",
         achievements: [
-          "Grew to more than 40,000 registered users in two weeks, with over 5,000 new sign-ups per day.",
-          "Run the Supabase backend (PostgreSQL, Auth, Realtime, Edge Functions) at more than 1.8 million API requests per day.",
+          "Grew from about 800 to more than 50,000 registered members in under three weeks, with over 175,000 live video calls in more than 200 countries.",
+          "Run the Supabase backend (PostgreSQL, Auth, Realtime, Edge Functions) at up to 1.8 million API requests per day.",
           "Built AI moderation of live video streams that runs directly in the browser and reacts in under one second.",
           "Set up Linux servers on Hetzner (TURN/Coturn) for WebRTC, then moved to Cloudflare Realtime TURN to cut costs.",
           "Integrated PayPal, Google Pay and Apple Pay for subscriptions and in-app purchases.",
@@ -126,8 +126,8 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1.8 million requests in 24 hours",
         "Supabase · 11 million requests in 7 days, 99.3% success rate",
-        "Google Analytics · 67,000 active users",
-        "Google Search Console · 60,500 clicks in 7 days",
+        "Google Analytics · 88,000 active users, 320,000 page views (2026)",
+        "Google Search Console · 121,000 clicks in 28 days",
       ],
     },
     dadaduNote: "Was available on the App Store and Google Play for one year. No longer listed.",
@@ -144,7 +144,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
     eyebrow: "Ausgewählte Entwicklungsprojekte",
     title: "Engineering Portfolio",
     subtitle:
-      "Ich entwickle und betreibe Software im Produktivbetrieb – eigenständig: eine Echtzeit-Videoplattform mit Nutzern in über 190 Ländern und eine plattformübergreifende Mobile-App.",
+      "Ich entwickle und betreibe Software im Produktivbetrieb – eigenständig: eine Echtzeit-Videoplattform mit Nutzern in über 200 Ländern und eine plattformübergreifende Mobile-App.",
     role: "Werkstudent · Softwareentwicklung",
     availability: "Ab sofort verfügbar · Rhein-Main / Rhein-Neckar · Remote",
     buttons: {
@@ -156,10 +156,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       projects: "Zu den Projekten",
     },
     stats: [
-      { label: "registrierte Nutzer in zwei Wochen" },
-      { label: "API-Anfragen pro Tag" },
+      { label: "registrierte Mitglieder in unter drei Wochen" },
+      { label: "API-Anfragen in 24 Stunden (Spitze)" },
       { label: "Länder mit aktiven Nutzern" },
-      { label: "Google-Klicks in 7 Tagen" },
+      { label: "Live-Videoanrufe" },
     ],
     labels: { concept: "Das Konzept", challenge: "Die technische Herausforderung", achievements: "Wichtigste Ergebnisse", stack: "Tech-Stack" },
     projects: [
@@ -168,10 +168,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
         category: "Live-Produkt · Gründer & Alleinentwickler",
         concept: "Eine Echtzeit-Videoplattform im Web, die Menschen weltweit sofort miteinander verbindet.",
         challenge:
-          "Eine nahezu latenzfreie Plattform für sichere, zufällige Videoverbindungen weltweit allein betreiben – während sie um Tausende Nutzer pro Tag wächst.",
+          "Eine nahezu latenzfreie Plattform für sichere, zufällige Videoverbindungen weltweit allein betreiben – während sie um Tausende Nutzer wächst.",
         achievements: [
-          "Über 40.000 registrierte Nutzer in zwei Wochen, mit über 5.000 Neuanmeldungen pro Tag.",
-          "Betrieb des Supabase-Backends (PostgreSQL, Auth, Realtime, Edge Functions) mit über 1,8 Mio. API-Anfragen pro Tag.",
+          "Von rund 800 auf über 50.000 registrierte Mitglieder in unter drei Wochen, mit über 175.000 Live-Videoanrufen in über 200 Ländern.",
+          "Betrieb des Supabase-Backends (PostgreSQL, Auth, Realtime, Edge Functions) mit bis zu 1,8 Mio. API-Anfragen pro Tag.",
           "KI-Moderation von Live-Videostreams direkt im Browser mit einer Reaktionszeit unter einer Sekunde.",
           "Linux-Server auf Hetzner (TURN/Coturn) für WebRTC eingerichtet, danach Umstieg auf Cloudflare Realtime TURN zur Kostensenkung.",
           "PayPal, Google Pay und Apple Pay für Abos und In-App-Käufe integriert.",
@@ -200,8 +200,8 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 Mio. Anfragen in 24 Stunden",
         "Supabase · 11 Mio. Anfragen in 7 Tagen, 99,3 % Erfolgsquote",
-        "Google Analytics · 67.000 aktive Nutzer",
-        "Google Search Console · 60.500 Klicks in 7 Tagen",
+        "Google Analytics · 88.000 aktive Nutzer, 320.000 Seitenaufrufe (2026)",
+        "Google Search Console · 121.000 Klicks in 28 Tagen",
       ],
     },
     dadaduNote: "War ein Jahr lang im App Store und bei Google Play verfügbar. Heute nicht mehr gelistet.",
@@ -218,7 +218,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
     eyebrow: "Projets d’ingénierie sélectionnés",
     title: "Engineering Portfolio",
     subtitle:
-      "Je construis et j’exploite seul des logiciels en production : une plateforme vidéo en temps réel utilisée dans plus de 190 pays, et une application mobile multiplateforme.",
+      "Je construis et j’exploite seul des logiciels en production : une plateforme vidéo en temps réel utilisée dans plus de 200 pays, et une application mobile multiplateforme.",
     role: "Werkstudent · Développement logiciel",
     availability: "Disponible immédiatement · Rhin-Main / Rhin-Neckar · Télétravail",
     buttons: {
@@ -230,10 +230,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       projects: "Voir les projets",
     },
     stats: [
-      { label: "utilisateurs inscrits en deux semaines" },
-      { label: "requêtes API par jour" },
+      { label: "membres inscrits en moins de trois semaines" },
+      { label: "requêtes API en 24 heures (pic)" },
       { label: "pays avec des utilisateurs actifs" },
-      { label: "clics Google en 7 jours" },
+      { label: "appels vidéo en direct" },
     ],
     labels: { concept: "Le concept", challenge: "Le défi d’ingénierie", achievements: "Réalisations clés", stack: "Stack technique" },
     projects: [
@@ -242,10 +242,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
         category: "Produit en ligne · Fondateur & développeur unique",
         concept: "Une plateforme web de communication vidéo en temps réel qui connecte instantanément des personnes du monde entier.",
         challenge:
-          "Faire tourner seul une plateforme à latence quasi nulle pour des connexions vidéo aléatoires et sécurisées à l’échelle mondiale, pendant qu’elle gagne des milliers d’utilisateurs par jour.",
+          "Faire tourner seul une plateforme à latence quasi nulle pour des connexions vidéo aléatoires et sécurisées à l’échelle mondiale, pendant qu’elle gagne des milliers d’utilisateurs.",
         achievements: [
-          "Plus de 40 000 utilisateurs inscrits en deux semaines, avec plus de 5 000 inscriptions par jour.",
-          "Backend Supabase (PostgreSQL, Auth, Realtime, Edge Functions) à plus de 1,8 million de requêtes API par jour.",
+          "D’environ 800 à plus de 50 000 membres inscrits en moins de trois semaines, avec plus de 175 000 appels vidéo en direct dans plus de 200 pays.",
+          "Backend Supabase (PostgreSQL, Auth, Realtime, Edge Functions) jusqu’à 1,8 million de requêtes API par jour.",
           "Modération IA des flux vidéo en direct, directement dans le navigateur, en moins d’une seconde.",
           "Serveurs Linux sur Hetzner (TURN/Coturn) pour WebRTC, puis passage à Cloudflare Realtime TURN pour réduire les coûts.",
           "Intégration de PayPal, Google Pay et Apple Pay pour les abonnements et achats intégrés.",
@@ -274,8 +274,8 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 million de requêtes en 24 heures",
         "Supabase · 11 millions de requêtes en 7 jours, 99,3 % de réussite",
-        "Google Analytics · 67 000 utilisateurs actifs",
-        "Google Search Console · 60 500 clics en 7 jours",
+        "Google Analytics · 88 000 utilisateurs actifs, 320 000 pages vues (2026)",
+        "Google Search Console · 121 000 clics en 28 jours",
       ],
     },
     dadaduNote: "Disponible sur l’App Store et Google Play pendant un an. N’y figure plus aujourd’hui.",
@@ -292,7 +292,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
     eyebrow: "Proyectos de ingeniería seleccionados",
     title: "Engineering Portfolio",
     subtitle:
-      "Construyo y opero software en producción por mi cuenta: una plataforma de vídeo en tiempo real usada en más de 190 países y una app móvil multiplataforma.",
+      "Construyo y opero software en producción por mi cuenta: una plataforma de vídeo en tiempo real usada en más de 200 países y una app móvil multiplataforma.",
     role: "Werkstudent · Desarrollo de software",
     availability: "Disponible ya · Rin-Meno / Rin-Neckar · Remoto",
     buttons: {
@@ -304,10 +304,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       projects: "Ver los proyectos",
     },
     stats: [
-      { label: "usuarios registrados en dos semanas" },
-      { label: "peticiones API al día" },
+      { label: "miembros registrados en menos de tres semanas" },
+      { label: "peticiones API en 24 horas (pico)" },
       { label: "países con usuarios activos" },
-      { label: "clics de Google en 7 días" },
+      { label: "videollamadas en directo" },
     ],
     labels: { concept: "El concepto", challenge: "El reto de ingeniería", achievements: "Logros clave", stack: "Stack técnico" },
     projects: [
@@ -316,10 +316,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
         category: "Producto en vivo · Fundador y único desarrollador",
         concept: "Una plataforma web de vídeo en tiempo real que conecta al instante a personas de todo el mundo.",
         challenge:
-          "Operar en solitario una plataforma de latencia casi nula para videollamadas aleatorias y seguras a escala mundial, mientras crece en miles de usuarios al día.",
+          "Operar en solitario una plataforma de latencia casi nula para videollamadas aleatorias y seguras a escala mundial, mientras crece en miles de usuarios.",
         achievements: [
-          "Más de 40.000 usuarios registrados en dos semanas, con más de 5.000 altas al día.",
-          "Backend en Supabase (PostgreSQL, Auth, Realtime, Edge Functions) con más de 1,8 millones de peticiones API al día.",
+          "De unos 800 a más de 50.000 miembros registrados en menos de tres semanas, con más de 175.000 videollamadas en directo en más de 200 países.",
+          "Backend en Supabase (PostgreSQL, Auth, Realtime, Edge Functions) con hasta 1,8 millones de peticiones API al día.",
           "Moderación por IA de vídeo en directo, en el propio navegador, en menos de un segundo.",
           "Servidores Linux en Hetzner (TURN/Coturn) para WebRTC y migración a Cloudflare Realtime TURN para reducir costes.",
           "Integración de PayPal, Google Pay y Apple Pay para suscripciones y compras dentro de la app.",
@@ -348,8 +348,8 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 millones de peticiones en 24 horas",
         "Supabase · 11 millones de peticiones en 7 días, 99,3 % de éxito",
-        "Google Analytics · 67.000 usuarios activos",
-        "Google Search Console · 60.500 clics en 7 días",
+        "Google Analytics · 88.000 usuarios activos, 320.000 páginas vistas (2026)",
+        "Google Search Console · 121.000 clics en 28 días",
       ],
     },
     dadaduNote: "Estuvo disponible un año en App Store y Google Play. Ya no aparece en las tiendas.",
@@ -366,7 +366,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
     eyebrow: "Projetos de engenharia selecionados",
     title: "Engineering Portfolio",
     subtitle:
-      "Construo e opero sozinho software em produção: uma plataforma de vídeo em tempo real usada em mais de 190 países e uma app móvel multiplataforma.",
+      "Construo e opero sozinho software em produção: uma plataforma de vídeo em tempo real usada em mais de 200 países e uma app móvel multiplataforma.",
     role: "Werkstudent · Desenvolvimento de software",
     availability: "Disponível já · Reno-Meno / Reno-Neckar · Remoto",
     buttons: {
@@ -378,10 +378,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       projects: "Ver os projetos",
     },
     stats: [
-      { label: "utilizadores registados em duas semanas" },
-      { label: "pedidos API por dia" },
+      { label: "membros registados em menos de três semanas" },
+      { label: "pedidos API em 24 horas (pico)" },
       { label: "países com utilizadores ativos" },
-      { label: "cliques no Google em 7 dias" },
+      { label: "videochamadas em direto" },
     ],
     labels: { concept: "O conceito", challenge: "O desafio de engenharia", achievements: "Principais realizações", stack: "Stack técnica" },
     projects: [
@@ -390,10 +390,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
         category: "Produto ao vivo · Fundador e único programador",
         concept: "Uma plataforma web de vídeo em tempo real que liga instantaneamente pessoas de todo o mundo.",
         challenge:
-          "Operar sozinho uma plataforma de latência quase nula para videochamadas aleatórias e seguras à escala global, enquanto cresce milhares de utilizadores por dia.",
+          "Operar sozinho uma plataforma de latência quase nula para videochamadas aleatórias e seguras à escala global, enquanto cresce milhares de utilizadores.",
         achievements: [
-          "Mais de 40.000 utilizadores registados em duas semanas, com mais de 5.000 registos por dia.",
-          "Backend Supabase (PostgreSQL, Auth, Realtime, Edge Functions) com mais de 1,8 milhões de pedidos API por dia.",
+          "De cerca de 800 para mais de 50.000 membros registados em menos de três semanas, com mais de 175.000 videochamadas em direto em mais de 200 países.",
+          "Backend Supabase (PostgreSQL, Auth, Realtime, Edge Functions) com até 1,8 milhões de pedidos API por dia.",
           "Moderação por IA de vídeo ao vivo, diretamente no navegador, em menos de um segundo.",
           "Servidores Linux na Hetzner (TURN/Coturn) para WebRTC e migração para Cloudflare Realtime TURN para reduzir custos.",
           "Integração de PayPal, Google Pay e Apple Pay para subscrições e compras na app.",
@@ -422,8 +422,8 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 milhões de pedidos em 24 horas",
         "Supabase · 11 milhões de pedidos em 7 dias, 99,3 % de sucesso",
-        "Google Analytics · 67.000 utilizadores ativos",
-        "Google Search Console · 60.500 cliques em 7 dias",
+        "Google Analytics · 88.000 utilizadores ativos, 320.000 visualizações (2026)",
+        "Google Search Console · 121.000 cliques em 28 dias",
       ],
     },
     dadaduNote: "Esteve disponível durante um ano na App Store e no Google Play. Já não está listada.",
@@ -440,7 +440,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
     eyebrow: "Progetti di ingegneria selezionati",
     title: "Engineering Portfolio",
     subtitle:
-      "Costruisco e gestisco da solo software in produzione: una piattaforma video in tempo reale usata in oltre 190 paesi e un’app mobile multipiattaforma.",
+      "Costruisco e gestisco da solo software in produzione: una piattaforma video in tempo reale usata in oltre 200 paesi e un’app mobile multipiattaforma.",
     role: "Werkstudent · Sviluppo software",
     availability: "Disponibile subito · Reno-Meno / Reno-Neckar · Da remoto",
     buttons: {
@@ -452,10 +452,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       projects: "Vedi i progetti",
     },
     stats: [
-      { label: "utenti registrati in due settimane" },
-      { label: "richieste API al giorno" },
+      { label: "membri registrati in meno di tre settimane" },
+      { label: "richieste API in 24 ore (picco)" },
       { label: "paesi con utenti attivi" },
-      { label: "clic su Google in 7 giorni" },
+      { label: "videochiamate dal vivo" },
     ],
     labels: { concept: "Il concetto", challenge: "La sfida ingegneristica", achievements: "Risultati principali", stack: "Stack tecnico" },
     projects: [
@@ -464,10 +464,10 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
         category: "Prodotto live · Fondatore e unico sviluppatore",
         concept: "Una piattaforma web di videochiamate in tempo reale che collega all’istante persone di tutto il mondo.",
         challenge:
-          "Gestire da solo una piattaforma a latenza quasi zero per videochiamate casuali e sicure su scala globale, mentre cresce di migliaia di utenti al giorno.",
+          "Gestire da solo una piattaforma a latenza quasi zero per videochiamate casuali e sicure su scala globale, mentre cresce di migliaia di utenti.",
         achievements: [
-          "Oltre 40.000 utenti registrati in due settimane, con più di 5.000 nuove iscrizioni al giorno.",
-          "Backend Supabase (PostgreSQL, Auth, Realtime, Edge Functions) con oltre 1,8 milioni di richieste API al giorno.",
+          "Da circa 800 a oltre 50.000 membri registrati in meno di tre settimane, con oltre 175.000 videochiamate dal vivo in più di 200 paesi.",
+          "Backend Supabase (PostgreSQL, Auth, Realtime, Edge Functions) con fino a 1,8 milioni di richieste API al giorno.",
           "Moderazione IA dei video live direttamente nel browser, in meno di un secondo.",
           "Server Linux su Hetzner (TURN/Coturn) per WebRTC, poi passaggio a Cloudflare Realtime TURN per ridurre i costi.",
           "Integrazione di PayPal, Google Pay e Apple Pay per abbonamenti e acquisti in-app.",
@@ -496,8 +496,8 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 milioni di richieste in 24 ore",
         "Supabase · 11 milioni di richieste in 7 giorni, 99,3 % di successo",
-        "Google Analytics · 67.000 utenti attivi",
-        "Google Search Console · 60.500 clic in 7 giorni",
+        "Google Analytics · 88.000 utenti attivi, 320.000 visualizzazioni (2026)",
+        "Google Search Console · 121.000 clic in 28 giorni",
       ],
     },
     dadaduNote: "È stata disponibile per un anno su App Store e Google Play. Oggi non è più presente.",

@@ -331,10 +331,10 @@ function Home() {
   }, [lang]);
 
   const stats = [
-    { value: 40000, decimals: 0, suffix: "+" },
+    { value: 50000, decimals: 0, suffix: "+" },
     { value: 1.8, decimals: 1, suffix: " M" },
-    { value: 190, decimals: 0, suffix: "+" },
-    { value: 60.5, decimals: 1, suffix: "k" },
+    { value: 200, decimals: 0, suffix: "+" },
+    { value: 175, decimals: 0, suffix: "k+" },
   ];
   const locale = { en: "en-US", de: "de-DE", fr: "fr-FR", es: "es-ES", pt: "pt-PT", it: "it-IT" }[lang];
 
@@ -452,7 +452,7 @@ function Home() {
               >
                 <p className="font-display text-3xl leading-none">
                   <span className="gold-text">
-                    <CountUp value={40000} suffix="+" locale={locale} />
+                    <CountUp value={50000} suffix="+" locale={locale} />
                   </span>
                 </p>
                 <p className="mt-1 max-w-[11rem] text-[11px] leading-4 text-muted-foreground">{portfolio.stats[0].label}</p>
@@ -463,7 +463,7 @@ function Home() {
               >
                 <p className="font-display text-2xl leading-none">
                   <span className="gold-text">
-                    <CountUp value={190} suffix="+" locale={locale} />
+                    <CountUp value={200} suffix="+" locale={locale} />
                   </span>
                 </p>
                 <p className="mt-1 max-w-[9rem] text-[11px] leading-4 text-muted-foreground">{portfolio.stats[2].label}</p>

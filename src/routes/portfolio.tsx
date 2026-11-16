@@ -53,7 +53,7 @@ const PORTFOLIO_SCHEMA = {
   "@type": "CollectionPage",
   name: "Engineering Portfolio — Bryan Lewis Dongue Ndiffo",
   description:
-    "Engineering portfolio of Bryan Lewis Dongue Ndiffo: Caakus real-time video platform (40,000+ users, 1.8M API requests per day) and Dadadu cross-platform social app.",
+    "Engineering portfolio of Bryan Lewis Dongue Ndiffo: Caakus real-time video platform (50,000+ members, 175,000+ live calls) and Dadadu cross-platform social app.",
   url: "https://www.lewisdongue.com/portfolio",
   about: { "@type": "Person", name: "Bryan Lewis Dongue Ndiffo", url: "https://www.lewisdongue.com/" },
   hasPart: [
@@ -62,7 +62,7 @@ const PORTFOLIO_SCHEMA = {
       name: "Caakus",
       url: CAAKUS_URL,
       applicationCategory: "SocialNetworkingApplication",
-      description: "A real-time video communication web platform used in more than 190 countries.",
+      description: "A real-time video communication web platform used in more than 200 countries.",
       author: { "@type": "Person", name: "Bryan Lewis Dongue Ndiffo" },
     },
     {
@@ -84,7 +84,7 @@ export const Route = createFileRoute("/portfolio")({
       {
         name: "description",
         content:
-          "Engineering portfolio of Bryan Lewis Dongue Ndiffo, Werkstudent in software development: Caakus real-time video platform (40,000+ users, 1.8M API requests per day) and Dadadu Flutter app.",
+          "Engineering portfolio of Bryan Lewis Dongue Ndiffo, Werkstudent in software development: Caakus real-time video platform (50,000+ members, 175,000+ live calls) and Dadadu Flutter app.",
       },
       { property: "og:title", content: "Engineering Portfolio — Bryan Lewis Dongue Ndiffo" },
       {
@@ -158,10 +158,10 @@ function PortfolioPage() {
   const [caakus, dadadu] = t.projects;
 
   const stats = [
-    { value: 40000, decimals: 0, suffix: "+" },
+    { value: 50000, decimals: 0, suffix: "+" },
     { value: 1.8, decimals: 1, suffix: " M" },
-    { value: 190, decimals: 0, suffix: "+" },
-    { value: 60.5, decimals: 1, suffix: "k" },
+    { value: 200, decimals: 0, suffix: "+" },
+    { value: 175, decimals: 0, suffix: "k+" },
   ];
 
   return (
@@ -366,7 +366,7 @@ function PortfolioPage() {
                     </div>
                     <div className="mt-8 grid gap-3">
                       {[
-                        { Icon: Globe2, value: <CountUp value={190} suffix="+" locale={locale} />, label: t.stats[2]?.label },
+                        { Icon: Globe2, value: <CountUp value={200} suffix="+" locale={locale} />, label: t.stats[2]?.label },
                         { Icon: Activity, value: <CountUp value={1.8} decimals={1} suffix=" M" locale={locale} />, label: t.stats[1]?.label },
                         { Icon: ShieldCheck, value: <>&lt; 1 s</>, label: t.moderationLabel },
                       ].map(({ Icon, value, label }, i) => (
