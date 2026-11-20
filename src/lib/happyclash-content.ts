@@ -6,6 +6,7 @@ export type HappyClashCopy = {
   badge: string;
   category: string;
   live: string;
+  duel: string;
   concept: string;
   client: string;
   challenge: string;
@@ -36,6 +37,7 @@ export const HAPPYCLASH_STACK = [
 export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   en: {
     name: "HappyClash",
+    duel: "Blind duel",
     badge: "Client project · delivered to production",
     category: "Full-stack web platform · Sole developer, end to end",
     live: "Open HappyClash live",
@@ -64,6 +66,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   de: {
     name: "HappyClash",
+    duel: "Blind-Duell",
     badge: "Kundenprojekt · produktiv ausgeliefert",
     category: "Full-Stack-Webplattform · alleiniger Entwickler, von A bis Z",
     live: "HappyClash live öffnen",
@@ -92,6 +95,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   fr: {
     name: "HappyClash",
+    duel: "Duel à l’aveugle",
     badge: "Projet client · livré en production",
     category: "Plateforme web full-stack · Seul développeur, de A à Z",
     live: "Ouvrir HappyClash en ligne",
@@ -120,6 +124,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   es: {
     name: "HappyClash",
+    duel: "Duelo a ciegas",
     badge: "Proyecto para cliente · en producción",
     category: "Plataforma web full-stack · Único desarrollador, de principio a fin",
     live: "Abrir HappyClash en vivo",
@@ -148,6 +153,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   pt: {
     name: "HappyClash",
+    duel: "Duelo às cegas",
     badge: "Projeto para cliente · em produção",
     category: "Plataforma web full-stack · Único programador, de ponta a ponta",
     live: "Abrir o HappyClash ao vivo",
@@ -176,6 +182,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   it: {
     name: "HappyClash",
+    duel: "Duello alla cieca",
     badge: "Progetto per cliente · in produzione",
     category: "Piattaforma web full-stack · Unico sviluppatore, dall’inizio alla fine",
     live: "Apri HappyClash online",

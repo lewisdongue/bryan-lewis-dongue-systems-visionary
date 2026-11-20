@@ -3,7 +3,7 @@ import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "rea
 import { CountUp, Reveal, Tilt } from "@/components/portfolio/effects";
 
 const Globe3D = lazy(() => import("@/components/portfolio/Globe3D").then((m) => ({ default: m.Globe3D })));
-import { COPY, LANGS, PROFILES, resolveLang, type Lang } from "@/lib/content";
+import { COPY, LANGS, PROFILES, detectLang, type Lang } from "@/lib/content";
 import { PORTFOLIO_COPY } from "@/lib/portfolio-content";
 import ceo from "@/assets/bryan-lewis-dongue-ndiffo-ceo-caakus-inc.jpg";
 import founder from "@/assets/bryan-lewis-dongue-ndiffo-founder-worms-germany.jpg";
@@ -270,7 +270,7 @@ function Home() {
   const currentSrc = useRef<string | null>(null);
 
   useEffect(() => {
-    setLang(resolveLang(navigator.language));
+    setLang(detectLang());
   }, []);
 
   useEffect(() => {

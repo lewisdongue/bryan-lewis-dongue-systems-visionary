@@ -14,6 +14,20 @@ export function resolveLang(input: string | undefined): Lang {
   return (LANGS.find((l) => l.code === code)?.code ?? "en") as Lang;
 }
 
+/** Visitor's language: `?lang=de` in the link first, then the browser's preferred languages in order, else English. */
+export function detectLang(): Lang {
+  const supported = (code: string | null | undefined) =>
+    LANGS.find((l) => l.code === (code ?? "").toLowerCase().slice(0, 2))?.code as Lang | undefined;
+  const fromUrl = supported(new URLSearchParams(window.location.search).get("lang"));
+  if (fromUrl) return fromUrl;
+  const prefs = navigator.languages?.length ? navigator.languages : [navigator.language];
+  for (const code of prefs) {
+    const lang = supported(code);
+    if (lang) return lang;
+  }
+  return "en";
+}
+
 export const PROFILES = [
   { name: "GitHub", url: "https://github.com/lewisdongue/lewisdongue" },
   { name: "GitHub Wiki", url: "https://github.com/lewisdongue/lewisdongue/wiki" },

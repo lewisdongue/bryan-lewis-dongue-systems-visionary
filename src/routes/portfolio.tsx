@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
-import { LANGS, resolveLang, type Lang } from "@/lib/content";
+import { LANGS, detectLang, type Lang } from "@/lib/content";
 import { PORTFOLIO_COPY } from "@/lib/portfolio-content";
 import { HAPPYCLASH_COPY, HAPPYCLASH_STACK, HAPPYCLASH_URL } from "@/lib/happyclash-content";
 import { PROJECTS_INDEX } from "@/lib/projects-index";
@@ -174,7 +174,7 @@ function PortfolioPage() {
   const [zoom, setZoom] = useState<number | null>(null);
 
   useEffect(() => {
-    setLang(resolveLang(navigator.language));
+    setLang(detectLang());
   }, []);
 
   useEffect(() => {
@@ -563,7 +563,7 @@ function PortfolioPage() {
                           </span>
                           <span className="absolute left-3 top-10 inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
                             <Swords className="h-3 w-3" aria-hidden="true" />
-                            Blind duel
+                            {hc.duel}
                           </span>
                         </div>
                       </div>
