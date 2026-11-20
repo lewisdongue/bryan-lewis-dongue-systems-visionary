@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { LANGS, resolveLang, type Lang } from "@/lib/content";
 import { PORTFOLIO_COPY } from "@/lib/portfolio-content";
+import { HAPPYCLASH_COPY, HAPPYCLASH_STACK, HAPPYCLASH_URL } from "@/lib/happyclash-content";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { CountUp, Reveal, Tilt } from "@/components/portfolio/effects";
@@ -27,10 +28,14 @@ import {
   ServerCog,
   ShieldCheck,
   Store,
+  Swords,
   Terminal,
 } from "lucide-react";
 import caakusLogo from "@/assets/caakus-logo.jpg";
 import dadaduLogo from "@/assets/dadadu-logo.jpg";
+import happyclashLogo from "@/assets/happyclash-logo.webp";
+import happyclashDuelA from "@/assets/proof/happyclash-duel-a.webp";
+import happyclashDuelB from "@/assets/proof/happyclash-duel-b.webp";
 import proofSupabase24h from "@/assets/proof/caakus-supabase-24h.webp";
 import proofSupabase7d from "@/assets/proof/caakus-supabase-7d.webp";
 import proofAnalytics from "@/assets/proof/caakus-analytics.webp";
@@ -63,6 +68,15 @@ const PORTFOLIO_SCHEMA = {
       url: CAAKUS_URL,
       applicationCategory: "SocialNetworkingApplication",
       description: "A real-time video communication web platform used in more than 200 countries.",
+      author: { "@type": "Person", name: "Bryan Lewis Dongue Ndiffo" },
+    },
+    {
+      "@type": "WebApplication",
+      name: "HappyClash",
+      url: "https://happyclash.com",
+      applicationCategory: "SocialNetworkingApplication",
+      description:
+        "Full-stack talent platform built for a client: video clashes, blind duels, live WebRTC clashes, rankings, admin console and a 3D world.",
       author: { "@type": "Person", name: "Bryan Lewis Dongue Ndiffo" },
     },
     {
@@ -156,6 +170,7 @@ function PortfolioPage() {
   const t = PORTFOLIO_COPY[lang];
   const locale = LOCALES[lang];
   const [caakus, dadadu] = t.projects;
+  const hc = HAPPYCLASH_COPY[lang];
 
   const stats = [
     { value: 50000, decimals: 0, suffix: "+" },
@@ -419,6 +434,136 @@ function PortfolioPage() {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* HappyClash — client project */}
+        <section id="happyclash" className="mt-28 scroll-mt-24">
+          <Reveal>
+            <Tilt max={3} lift={6} className="glass-3d overflow-hidden rounded-2xl">
+              <div className="relative p-5 sm:p-10">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-60"
+                  style={{
+                    background:
+                      "radial-gradient(60% 50% at 0% 0%, rgba(47,111,191,0.28), transparent 70%), radial-gradient(50% 45% at 100% 10%, rgba(236,93,158,0.22), transparent 70%), radial-gradient(45% 40% at 70% 100%, rgba(255,213,79,0.14), transparent 70%)",
+                  }}
+                  aria-hidden="true"
+                />
+                <header className="relative flex flex-col gap-5 border-b border-border pb-7 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
+                    <div className="inline-flex rounded-xl bg-white px-4 py-3 shadow-lg">
+                      <img src={happyclashLogo} alt="HappyClash logo" className="h-9 w-auto sm:h-11" width={600} height={161} />
+                    </div>
+                    <p className="mt-4 text-xs font-medium uppercase leading-5 tracking-[0.14em] text-primary">{hc.category}</p>
+                    <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1.5 text-xs font-medium text-sky-200">
+                      <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-sky-400 text-sky-400" aria-hidden="true" />
+                      {hc.badge}
+                    </p>
+                  </div>
+                  <Button asChild size="lg" className="h-11 w-full shrink-0 px-5 sm:w-auto">
+                    <a href={HAPPYCLASH_URL} target="_blank" rel="noopener noreferrer">
+                      {hc.live}
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </Button>
+                </header>
+
+                <div className="relative mt-8 grid gap-10 lg:grid-cols-[1.25fr_1fr]">
+                  <div className="space-y-7">
+                    <div>
+                      <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                        <Layers3 className="h-4 w-4 text-primary" aria-hidden="true" />
+                        {t.labels.concept}
+                      </h3>
+                      <p className="mt-2 text-sm leading-7 text-muted-foreground">{hc.concept}</p>
+                      <p className="mt-3 rounded-lg border border-primary/25 bg-primary/5 px-4 py-3 text-sm leading-7 text-foreground/90">
+                        {hc.client}
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                        <ServerCog className="h-4 w-4 text-primary" aria-hidden="true" />
+                        {t.labels.challenge}
+                      </h3>
+                      <p className="mt-2 text-sm leading-7 text-muted-foreground">{hc.challenge}</p>
+                    </div>
+                    <div>
+                      <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                        <Code2 className="h-4 w-4 text-primary" aria-hidden="true" />
+                        {t.labels.achievements}
+                      </h3>
+                      <ul className="mt-3 space-y-3">
+                        {hc.achievements.map((a) => (
+                          <li key={a} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                            <Check className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                            <span>{a}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    {/* Blind duel, as players see it */}
+                    <div className="relative mx-auto w-[230px] sm:w-[250px]">
+                      <div className="absolute -inset-10 rounded-full bg-gradient-to-br from-sky-500/25 via-violet-500/20 to-pink-500/25 blur-3xl" aria-hidden="true" />
+                      <div className="phone-3d relative rounded-[2.6rem] border border-white/15 bg-neutral-950 p-2.5 shadow-[0_50px_90px_-30px_rgba(0,0,0,0.95)]">
+                        <div className="absolute left-1/2 top-3.5 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-black" aria-hidden="true" />
+                        <div className="relative grid aspect-[9/19.5] w-full grid-rows-2 gap-1 overflow-hidden rounded-[2rem] bg-black">
+                          <img src={happyclashDuelA} alt="" loading="lazy" className="h-full w-full object-cover" />
+                          <img src={happyclashDuelB} alt="" loading="lazy" className="h-full w-full object-cover" />
+                          <span className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-white/80 bg-gradient-to-br from-[#2F6FBF] via-[#6A5BA8] to-[#EC5D9E] font-display text-lg font-bold text-white shadow-xl">
+                            VS
+                          </span>
+                          <span className="absolute left-3 top-10 inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+                            <Swords className="h-3 w-3" aria-hidden="true" />
+                            Blind duel
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-10 grid grid-cols-2 gap-3">
+                      {[
+                        <CountUp key="loc" value={14900} suffix="+" locale={locale} />,
+                        <CountUp key="mig" value={30} locale={locale} />,
+                        <CountUp key="scr" value={22} locale={locale} />,
+                        <>100%</>,
+                      ].map((value, i) => (
+                        <Tilt key={i} max={8} lift={10} className="rounded-xl border border-border bg-background/40 p-4">
+                          <p className="font-display text-2xl leading-tight text-foreground">{value}</p>
+                          <p className="mt-1 text-xs leading-5 text-muted-foreground">{hc.metrics[i]}</p>
+                        </Tilt>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Architecture layers + stack */}
+                <div className="relative mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {hc.layers.map((layer) => (
+                    <div key={layer.title} className="rounded-xl border border-border bg-background/40 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">{layer.title}</p>
+                      <p className="mt-2 text-xs leading-6 text-muted-foreground">{layer.items}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="relative mt-6">
+                  <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <Database className="h-4 w-4 text-primary" aria-hidden="true" />
+                    {t.labels.stack}
+                  </h3>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {HAPPYCLASH_STACK.map((tech) => (
+                      <span key={tech} className="rounded-md border border-border bg-secondary/70 px-3 py-1.5 text-xs text-secondary-foreground">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Tilt>
+          </Reveal>
         </section>
 
         {/* Dadadu */}
