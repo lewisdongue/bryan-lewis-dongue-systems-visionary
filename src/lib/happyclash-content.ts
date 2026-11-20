@@ -7,6 +7,7 @@ export type HappyClashCopy = {
   category: string;
   live: string;
   duel: string;
+  source: string;
   concept: string;
   client: string;
   challenge: string;
@@ -17,6 +18,7 @@ export type HappyClashCopy = {
 };
 
 export const HAPPYCLASH_URL = "https://happyclash.com";
+export const HAPPYCLASH_SOURCE_URL = "https://github.com/lewisdongue/happyclash-platform";
 
 export const HAPPYCLASH_STACK = [
   "React 19",
@@ -37,6 +39,7 @@ export const HAPPYCLASH_STACK = [
 export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   en: {
     name: "HappyClash",
+    source: "Source code",
     duel: "Blind duel",
     badge: "Client project · delivered to production",
     category: "Full-stack web platform · Sole developer, end to end",
@@ -66,6 +69,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   de: {
     name: "HappyClash",
+    source: "Quellcode",
     duel: "Blind-Duell",
     badge: "Kundenprojekt · produktiv ausgeliefert",
     category: "Full-Stack-Webplattform · alleiniger Entwickler, von A bis Z",
@@ -95,6 +99,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   fr: {
     name: "HappyClash",
+    source: "Code source",
     duel: "Duel à l’aveugle",
     badge: "Projet client · livré en production",
     category: "Plateforme web full-stack · Seul développeur, de A à Z",
@@ -124,6 +129,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   es: {
     name: "HappyClash",
+    source: "Código fuente",
     duel: "Duelo a ciegas",
     badge: "Proyecto para cliente · en producción",
     category: "Plataforma web full-stack · Único desarrollador, de principio a fin",
@@ -153,6 +159,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   pt: {
     name: "HappyClash",
+    source: "Código-fonte",
     duel: "Duelo às cegas",
     badge: "Projeto para cliente · em produção",
     category: "Plataforma web full-stack · Único programador, de ponta a ponta",
@@ -182,6 +189,7 @@ export const HAPPYCLASH_COPY: Record<Lang, HappyClashCopy> = {
   },
   it: {
     name: "HappyClash",
+    source: "Codice sorgente",
     duel: "Duello alla cieca",
     badge: "Progetto per cliente · in produzione",
     category: "Piattaforma web full-stack · Unico sviluppatore, dall’inizio alla fine",

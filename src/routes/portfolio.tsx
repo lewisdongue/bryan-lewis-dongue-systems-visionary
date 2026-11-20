@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { LANGS, detectLang, type Lang } from "@/lib/content";
 import { PORTFOLIO_COPY } from "@/lib/portfolio-content";
-import { HAPPYCLASH_COPY, HAPPYCLASH_STACK, HAPPYCLASH_URL } from "@/lib/happyclash-content";
+import { HAPPYCLASH_COPY, HAPPYCLASH_SOURCE_URL, HAPPYCLASH_STACK, HAPPYCLASH_URL } from "@/lib/happyclash-content";
 import { PROJECTS_INDEX } from "@/lib/projects-index";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -506,12 +506,20 @@ function PortfolioPage() {
                       {hc.badge}
                     </p>
                   </div>
-                  <Button asChild size="lg" className="h-11 w-full shrink-0 px-5 sm:w-auto">
-                    <a href={HAPPYCLASH_URL} target="_blank" rel="noopener noreferrer">
-                      {hc.live}
-                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  </Button>
+                  <div className="flex w-full shrink-0 flex-col gap-2 sm:w-auto">
+                    <Button asChild size="lg" className="h-11 px-5">
+                      <a href={HAPPYCLASH_URL} target="_blank" rel="noopener noreferrer">
+                        {hc.live}
+                        <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      </a>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="h-11 border-primary/40 bg-transparent px-5">
+                      <a href={HAPPYCLASH_SOURCE_URL} target="_blank" rel="noopener noreferrer">
+                        <GithubIcon className="h-4 w-4" />
+                        {hc.source}
+                      </a>
+                    </Button>
+                  </div>
                 </header>
 
                 <div className="relative mt-8 grid gap-10 lg:grid-cols-[1.25fr_1fr]">
