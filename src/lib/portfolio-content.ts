@@ -126,7 +126,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1.8 million requests in 24 hours",
         "Supabase · 11 million requests in 7 days, 99.3% success rate",
-        "Google Analytics · 88,000 active users, 320,000 page views (2026)",
+        "Google Analytics · 91,000 visitors, about 52,000 of whom created an account",
         "Google Search Console · 121,000 clicks in 28 days",
       ],
     },
@@ -200,7 +200,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 Mio. Anfragen in 24 Stunden",
         "Supabase · 11 Mio. Anfragen in 7 Tagen, 99,3 % Erfolgsquote",
-        "Google Analytics · 88.000 aktive Nutzer, 320.000 Seitenaufrufe (2026)",
+        "Google Analytics · 91.000 Besucher, davon rund 52.000 mit eigenem Konto",
         "Google Search Console · 121.000 Klicks in 28 Tagen",
       ],
     },
@@ -274,7 +274,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 million de requêtes en 24 heures",
         "Supabase · 11 millions de requêtes en 7 jours, 99,3 % de réussite",
-        "Google Analytics · 88 000 utilisateurs actifs, 320 000 pages vues (2026)",
+        "Google Analytics · 91 000 visiteurs, dont environ 52 000 ont créé un compte",
         "Google Search Console · 121 000 clics en 28 jours",
       ],
     },
@@ -348,7 +348,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 millones de peticiones en 24 horas",
         "Supabase · 11 millones de peticiones en 7 días, 99,3 % de éxito",
-        "Google Analytics · 88.000 usuarios activos, 320.000 páginas vistas (2026)",
+        "Google Analytics · 91.000 visitantes, de los cuales unos 52.000 crearon una cuenta",
         "Google Search Console · 121.000 clics en 28 días",
       ],
     },
@@ -422,7 +422,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 milhões de pedidos em 24 horas",
         "Supabase · 11 milhões de pedidos em 7 dias, 99,3 % de sucesso",
-        "Google Analytics · 88.000 utilizadores ativos, 320.000 visualizações (2026)",
+        "Google Analytics · 91.000 visitantes, dos quais cerca de 52.000 criaram conta",
         "Google Search Console · 121.000 cliques em 28 dias",
       ],
     },
@@ -496,7 +496,7 @@ export const PORTFOLIO_COPY: Record<Lang, PortfolioCopy> = {
       captions: [
         "Supabase · 1,8 milioni di richieste in 24 ore",
         "Supabase · 11 milioni di richieste in 7 giorni, 99,3 % di successo",
-        "Google Analytics · 88.000 utenti attivi, 320.000 visualizzazioni (2026)",
+        "Google Analytics · 91.000 visitatori, di cui circa 52.000 hanno creato un account",
         "Google Search Console · 121.000 clic in 28 giorni",
       ],
     },
