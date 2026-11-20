@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { LANGS, resolveLang, type Lang } from "@/lib/content";
 import { PORTFOLIO_COPY } from "@/lib/portfolio-content";
 import { HAPPYCLASH_COPY, HAPPYCLASH_STACK, HAPPYCLASH_URL } from "@/lib/happyclash-content";
+import { PROJECTS_INDEX } from "@/lib/projects-index";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { CountUp, Reveal, Tilt } from "@/components/portfolio/effects";
@@ -155,6 +156,19 @@ function SectionHeading({ eyebrow, title, lead }: { eyebrow?: string; title: str
   );
 }
 
+/** "Project 02 / 03 · Client project · full-stack": tells the reader where one project starts. */
+function ProjectTag({ n, label, type }: { n: number; label: string; type: string }) {
+  return (
+    <div className="mb-5 flex items-center gap-3">
+      <span className="font-display text-3xl leading-none text-primary sm:text-4xl">{String(n).padStart(2, "0")}</span>
+      <span className="h-px w-8 bg-primary/50" aria-hidden="true" />
+      <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+        {label} {n} / 3 · <span className="text-foreground">{type}</span>
+      </span>
+    </div>
+  );
+}
+
 function PortfolioPage() {
   const [lang, setLang] = useState<Lang>("en");
   const [zoom, setZoom] = useState<number | null>(null);
@@ -171,6 +185,12 @@ function PortfolioPage() {
   const locale = LOCALES[lang];
   const [caakus, dadadu] = t.projects;
   const hc = HAPPYCLASH_COPY[lang];
+  const pi = PROJECTS_INDEX[lang];
+  const index = [
+    { id: "caakus", name: caakus.name, logo: caakusLogo, light: false },
+    { id: "happyclash", name: hc.name, logo: happyclashLogo, light: true },
+    { id: "dadadu", name: dadadu.name, logo: dadaduLogo, light: false },
+  ];
 
   const stats = [
     { value: 50000, decimals: 0, suffix: "+" },
@@ -302,8 +322,33 @@ function PortfolioPage() {
       </section>
 
       <main className="mx-auto max-w-6xl px-4 py-20 sm:px-5 sm:py-24">
+        {/* The three projects at a glance */}
+        <nav aria-label={pi.title} className="mb-20">
+          <p className="eyebrow">{pi.title}</p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            {index.map((p, i) => (
+              <a
+                key={p.id}
+                href={`#${p.id}`}
+                className="glass-3d group flex items-center gap-4 rounded-xl p-4 transition-colors hover:border-primary/50"
+              >
+                <span className="font-display text-2xl leading-none text-primary">{String(i + 1).padStart(2, "0")}</span>
+                <span className={`grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-lg border border-border ${p.light ? "bg-white p-1" : ""}`}>
+                  <img src={p.logo} alt="" className={p.light ? "h-auto w-full object-contain" : "h-full w-full object-cover"} />
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-display text-xl leading-tight text-foreground">{p.name}</span>
+                  <span className="block text-xs leading-5 text-muted-foreground">{pi.types[i]}</span>
+                </span>
+                <ArrowDown className="ml-auto h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-y-0.5" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        </nav>
+
         {/* Caakus */}
         <section id="caakus" className="scroll-mt-24">
+          <ProjectTag n={1} label={pi.project} type={pi.types[0]} />
           <Reveal>
             <Tilt max={3} lift={6} className="glass-3d overflow-hidden rounded-2xl">
               <div className="relative p-5 sm:p-10">
@@ -437,7 +482,8 @@ function PortfolioPage() {
         </section>
 
         {/* HappyClash — client project */}
-        <section id="happyclash" className="mt-28 scroll-mt-24">
+        <section id="happyclash" className="mt-28 scroll-mt-24 border-t border-border pt-16">
+          <ProjectTag n={2} label={pi.project} type={pi.types[1]} />
           <Reveal>
             <Tilt max={3} lift={6} className="glass-3d overflow-hidden rounded-2xl">
               <div className="relative p-5 sm:p-10">
@@ -567,7 +613,8 @@ function PortfolioPage() {
         </section>
 
         {/* Dadadu */}
-        <section id="dadadu" className="mt-28 scroll-mt-24">
+        <section id="dadadu" className="mt-28 scroll-mt-24 border-t border-border pt-16">
+          <ProjectTag n={3} label={pi.project} type={pi.types[2]} />
           <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <Reveal className="order-2 lg:order-1">
               <div className="relative mx-auto w-[220px] sm:w-[250px]">
